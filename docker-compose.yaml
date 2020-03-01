@@ -1,0 +1,38 @@
+version: '3.4'
+
+services:
+  php:
+    build:
+      context: ./
+      target: music_gether_php
+    depends_on:
+      - db
+    volumes:
+      - ./:/srv/api:rw,cached
+      - ./var:/srv/api/var
+      - ./docker/php/conf.d/api-platform.dev.ini/:/usr/local/etc/php/conf.d/api-platform.ini
+  
+  api:
+    build:
+      context: ./
+      target: music_gether_nginx
+    depends_on:
+      - php
+    volumes:
+      - ./public:/srv/api/public:ro
+    ports:
+      - 8080:80
+
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=pass
+    volumes:
+      - db-data:/var/lib/mysql
+    ports:
+      - target: 3306
+        published: 3306
+        protocol: tcp
+
+volumes:
+  db-data: {}

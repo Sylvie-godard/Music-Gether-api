@@ -10,3 +10,6 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+
+# Ignore idea
+.idea
