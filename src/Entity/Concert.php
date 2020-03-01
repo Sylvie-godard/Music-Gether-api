@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
-use Cake\Chronos\Chronos;
+
 /**
  * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\ConcertRepository")
@@ -38,7 +38,7 @@ class Concert
      */
     private $price;
 
-    public function __construct(string $artist )
+    public function __construct(string $artist)
     {
     }
 
