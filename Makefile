@@ -9,3 +9,6 @@ migrate:
 
 vendors:
 	composer install
+
+clean-cache:
+	rm -r var/cache/*
