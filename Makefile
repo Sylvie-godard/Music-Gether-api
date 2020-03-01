@@ -6,3 +6,6 @@ migrations:
 
 migrate:
 	php bin/console doctrine:migrations:migrate
+
+vendors:
+	composer install

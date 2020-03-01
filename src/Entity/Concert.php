@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Cake\Chronos\ChronosInterface; 
 
 /**
  * @ApiResource()
@@ -38,16 +39,24 @@ class Concert
      */
     private $price;
 
-    public function __construct(string $artist)
-    {
+    public function __construct(
+        string $artist, 
+        ChronosInterface $eventDate, 
+        string $eventLocation, 
+        int $price
+    ) {
+        $this->artist = $artist;
+        $this->eventDate = $eventDate;
+        $this->eventLocation = $eventLocation;
+        $this->price = $price;
     }
 
-    public function getId(): ?int
+    public function id(): int
     {
         return $this->id;
     }
 
-    public function getArtist(): ?string
+    public function artist(): string
     {
         return $this->artist;
     }
@@ -59,31 +68,31 @@ class Concert
         return $this;
     }
 
-    public function getEventDate(): ?\DateTimeInterface
+    public function eventDate(): ChronosInterface
     {
-        return $this->event_date;
+        return $this->eventDate;
     }
 
-    public function setEventDate(\DateTimeInterface $event_date): self
+    public function setEventDate(\DateTimeInterface $eventDate): self
     {
-        $this->event_date = $event_date;
+        $this->eventDate = $eventDate;
 
         return $this;
     }
 
-    public function getEventLocation(): ?string
+    public function eventLocation(): ?string
     {
-        return $this->event_location;
+        return $this->eventLocation;
     }
 
-    public function setEventLocation(string $event_location): self
+    public function setEventLocation(string $eventLocation): self
     {
-        $this->event_location = $event_location;
+        $this->eventLocation = $eventLocation;
 
         return $this;
     }
 
-    public function getPrice(): ?int
+    public function price(): ?int
     {
         return $this->price;
     }

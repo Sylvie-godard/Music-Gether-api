@@ -1,50 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use App\Entity\Concert;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
 
-/**
- * @method Concert|null find($id, $lockMode = null, $lockVersion = null)
- * @method Concert|null findOneBy(array $criteria, array $orderBy = null)
- * @method Concert[]    findAll()
- * @method Concert[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
-class ConcertRepository extends ServiceEntityRepository
+class ConcertRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    private $entityManager;
+    
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        parent::__construct($registry, Concert::class);
+        $this->entityManager = $entityManager;
     }
 
-    // /**
-    //  * @return Concert[] Returns an array of Concert objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function save(Concert $concert): void
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $this->entityManager->persist($concert);
+        $this->entityManager->flush($concert);
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Concert
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
