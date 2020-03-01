@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
-
+use Cake\Chronos\Chronos;
 /**
  * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\ConcertRepository")
@@ -26,17 +26,21 @@ class Concert
     /**
      * @ORM\Column(type="date")
      */
-    private $event_date;
+    private $eventDate;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $event_location;
+    private $eventLocation;
 
     /**
      * @ORM\Column(type="integer")
      */
     private $price;
+
+    public function __construct(string $artist )
+    {
+    }
 
     public function getId(): ?int
     {
