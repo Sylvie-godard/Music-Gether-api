@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Validator;
 
+use Cake\Chronos\Chronos;
 use Cake\Chronos\ChronosInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -23,7 +24,7 @@ class ConcertInput
     /** 
      * @Assert\NotBlank
      */
-    private $adress;
+    private $address;
 
     /** 
      * @Assert\NotBlank
@@ -33,12 +34,12 @@ class ConcertInput
     private function __construct(
         ?string $artist = null, 
         ?ChronosInterface $eventDate = null, 
-        ?string $adress = null, 
+        ?string $address = null,
         ?int $price = null
     ){
         $this->artist = $artist;
         $this->eventDate = $eventDate;
-        $this->adress = $adress;
+        $this->address = $address;
         $this->price = $price;
     }
 
@@ -47,9 +48,13 @@ class ConcertInput
         $response = $request->request->all();
         $artist = isset($response['artist']) ? $response['artist'] : null;
         $eventDate = isset($response['date']) ? $response['date'] : null;
-        $adress = isset($response['adress']) ? $response['adress'] : null;
+        $address = isset($response['address']) ? $response['address'] : null;
         $price = isset($response['price']) ? $response['price'] : null;
 
-        return new static($artist, $eventDate, $adress, $price);
+        if ($eventDate !== null) {
+            $eventDate = Chronos::createFromFormat('m/d/Y', $response['date']);
+        }
+
+        return new static($artist, $eventDate, $address, $price);
      }
 }

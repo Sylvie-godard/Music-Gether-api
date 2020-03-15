@@ -34,7 +34,7 @@ class Concert
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $eventLocation;
+    private $address;
 
     /**
      * @ORM\Column(type="integer")
@@ -44,12 +44,12 @@ class Concert
     public function __construct(
         string $artist, 
         ChronosInterface $eventDate, 
-        string $eventLocation, 
+        string $address,
         int $price
     ) {
         $this->artist = $artist;
         $this->eventDate = $eventDate;
-        $this->eventLocation = $eventLocation;
+        $this->address = $address;
         $this->price = $price;
     }
 
@@ -82,14 +82,14 @@ class Concert
         return $this;
     }
 
-    public function eventLocation(): ?string
+    public function address(): ?string
     {
-        return $this->eventLocation;
+        return $this->address;
     }
 
-    public function setEventLocation(string $eventLocation): self
+    public function setAddress(string $address): self
     {
-        $this->eventLocation = $eventLocation;
+        $this->address = $address;
 
         return $this;
     }
