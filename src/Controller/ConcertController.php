@@ -8,7 +8,6 @@ use App\Entity\Concert;
 use App\Exception\InvalidDataException;
 use App\Repository\ConcertRepository;
 use App\Validator\ConcertInput;
-use Cake\Chronos\Chronos;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -27,8 +26,6 @@ class ConcertController
 
     public function __invoke(Request $request): Response
     {
-        $response = $request->request->all();
-
         $concertInput = ConcertInput::fromSymfonyRequest($request);
         $errors = $this->validator->validate($concertInput);
 
@@ -36,9 +33,8 @@ class ConcertController
             throw InvalidDataException::fromConstraintViolations($errors);
         }
 
-        $date = Chronos::createFromFormat('m/d/Y', $response['date']);
         $concert = new Concert(
-            $response['artist'], $date, $response['adress'], $response['price']
+            $concertInput->artist(), $concertInput->date(), $concertInput->address(), $concertInput->price()
         );
 
         $this->concertRepository->save($concert);

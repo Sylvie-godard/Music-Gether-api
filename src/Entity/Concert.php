@@ -29,7 +29,7 @@ class Concert
     /**
      * @ORM\Column(type="date")
      */
-    private $eventDate;
+    private $date;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -43,12 +43,12 @@ class Concert
 
     public function __construct(
         string $artist, 
-        ChronosInterface $eventDate, 
+        ChronosInterface $date,
         string $address,
         int $price
     ) {
         $this->artist = $artist;
-        $this->eventDate = $eventDate;
+        $this->date = $date;
         $this->address = $address;
         $this->price = $price;
     }
@@ -70,14 +70,14 @@ class Concert
         return $this;
     }
 
-    public function eventDate(): ChronosInterface
+    public function date(): ChronosInterface
     {
-        return $this->eventDate;
+        return $this->date;
     }
 
-    public function setEventDate(\DateTimeInterface $eventDate): self
+    public function setDate(ChronosInterface $date): self
     {
-        $this->eventDate = $eventDate;
+        $this->date = $date;
 
         return $this;
     }

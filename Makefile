@@ -1,11 +1,11 @@
 database:
 	php bin/console doctrine:database:create
 
-migrations:
-	php bin/console make:migration
+diff:
+	php bin/console doctrine:migrations:diff
 
-migrate:
-	php bin/console doctrine:migrations:migrate
+migration:
+	bin/console doctrine:migrations:migrate
 
 vendors:
 	composer install

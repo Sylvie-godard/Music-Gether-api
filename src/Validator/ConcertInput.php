@@ -19,7 +19,7 @@ class ConcertInput
     /** 
      * @Assert\NotBlank
      */
-    private $eventDate;
+    private $date;
 
     /** 
      * @Assert\NotBlank
@@ -33,12 +33,12 @@ class ConcertInput
 
     private function __construct(
         ?string $artist = null, 
-        ?ChronosInterface $eventDate = null, 
+        ?ChronosInterface $date = null,
         ?string $address = null,
         ?int $price = null
     ){
         $this->artist = $artist;
-        $this->eventDate = $eventDate;
+        $this->date = $date;
         $this->address = $address;
         $this->price = $price;
     }
@@ -47,14 +47,34 @@ class ConcertInput
      {
         $response = $request->request->all();
         $artist = isset($response['artist']) ? $response['artist'] : null;
-        $eventDate = isset($response['date']) ? $response['date'] : null;
+         $date = isset($response['date']) ? $response['date'] : null;
         $address = isset($response['address']) ? $response['address'] : null;
         $price = isset($response['price']) ? $response['price'] : null;
 
-        if ($eventDate !== null) {
-            $eventDate = Chronos::createFromFormat('m/d/Y', $response['date']);
+        if ($date !== null) {
+            $date = Chronos::createFromFormat('m/d/Y', $response['date']);
         }
 
-        return new static($artist, $eventDate, $address, $price);
+        return new static($artist, $date, $address, (int) $price);
+     }
+
+     public function address(): string
+     {
+         return $this->address;
+     }
+
+     public function artist(): string
+     {
+         return $this->artist;
+     }
+
+     public function price(): int
+     {
+         return $this->price;
+     }
+
+     public function date(): ChronosInterface
+     {
+         return $this->date;
      }
 }
