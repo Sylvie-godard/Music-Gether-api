@@ -4,10 +4,10 @@ database:
 database-clean:
 	docker-compose exec php bin/console doctrine:database:drop --force
 
-migrations:
-	docker-compose exec php bin/console make:migration
+diff:
+	php bin/console doctrine:migrations:diff
 
-migrate:
+migration:
 	docker-compose exec php bin/console doctrine:migrations:migrate
 
 vendors:
@@ -40,6 +40,9 @@ docker-logs:
 clean:
 	rm -rf ./vendor ./var
 
-docker-init: docker-down clean docker-pull docker-build docker-run vendors database migrate
-docker-init-debug: docker-down clean docker-pull-debug docker-build-debug docker-run-debug vendors database-clean database migrate
+docker-init: docker-down clean docker-pull docker-build docker-run vendors database migration
+docker-init-debug: docker-down clean docker-pull-debug docker-build-debug docker-run-debug vendors database-clean database migration
 
+
+clean-cache:
+	rm -r var/cache/*

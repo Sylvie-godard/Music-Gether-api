@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
@@ -27,12 +29,12 @@ class Concert
     /**
      * @ORM\Column(type="date")
      */
-    private $eventDate;
+    private $date;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $eventLocation;
+    private $address;
 
     /**
      * @ORM\Column(type="integer")
@@ -41,13 +43,13 @@ class Concert
 
     public function __construct(
         string $artist, 
-        ChronosInterface $eventDate, 
-        string $eventLocation, 
+        ChronosInterface $date,
+        string $address,
         int $price
     ) {
         $this->artist = $artist;
-        $this->eventDate = $eventDate;
-        $this->eventLocation = $eventLocation;
+        $this->date = $date;
+        $this->address = $address;
         $this->price = $price;
     }
 
@@ -68,26 +70,26 @@ class Concert
         return $this;
     }
 
-    public function eventDate(): ChronosInterface
+    public function date(): ChronosInterface
     {
-        return $this->eventDate;
+        return $this->date;
     }
 
-    public function setEventDate(\DateTimeInterface $eventDate): self
+    public function setDate(ChronosInterface $date): self
     {
-        $this->eventDate = $eventDate;
+        $this->date = $date;
 
         return $this;
     }
 
-    public function eventLocation(): ?string
+    public function address(): ?string
     {
-        return $this->eventLocation;
+        return $this->address;
     }
 
-    public function setEventLocation(string $eventLocation): self
+    public function setAddress(string $address): self
     {
-        $this->eventLocation = $eventLocation;
+        $this->address = $address;
 
         return $this;
     }
