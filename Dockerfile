@@ -104,7 +104,7 @@ VOLUME /srv/api/var
 
 CMD ["php-fpm"]
 
-FROM music_gether_php as music_platform_php_dev
+FROM music_gether_php AS music_gether_php_dev
 
 ARG XDEBUG_VERSION=2.9.2
 RUN set -eux; \
