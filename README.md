@@ -7,6 +7,8 @@
 
 ####First launch Steps
 -       sudo make docker-init
+   or
+-       sudo make docker-init-debug (if you want to activate xdebug of php)
 -   Or follow the following steps
 
 1.    Create .env file on project root folder. (copy .env.dist)
