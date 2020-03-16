@@ -1,5 +1,5 @@
 database:
-	docker-compose exec php bin/console doctrine:database:create
+	docker-compose exec php bin/console doctrine:database:create --if-not-exists
 
 database-clean:
 	docker-compose exec php bin/console doctrine:database:drop --force
@@ -41,7 +41,7 @@ clean:
 	rm -rf ./vendor ./var
 
 docker-init: docker-down clean docker-pull docker-build docker-run vendors database migration
-docker-init-debug: docker-down clean docker-pull-debug docker-build-debug docker-run-debug vendors database-clean database migration
+docker-init-debug: docker-down clean docker-pull-debug docker-build-debug docker-run-debug vendors database migration
 
 
 clean-cache:
