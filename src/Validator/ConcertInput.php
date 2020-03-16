@@ -11,28 +11,28 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class ConcertInput
 {
-    /** 
+    /**
      * @Assert\NotBlank
      */
-    private $artist;
+    private ?string $artist;
 
-    /** 
+    /**
      * @Assert\NotBlank
      */
-    private $date;
+    private ?ChronosInterface $date;
 
-    /** 
+    /**
      * @Assert\NotBlank
      */
-    private $address;
+    private ?string $address;
 
-    /** 
+    /**
      * @Assert\NotBlank
      */
-    private $price;
+    private ?int $price;
 
     private function __construct(
-        ?string $artist = null, 
+        ?string $artist = null,
         ?ChronosInterface $date = null,
         ?string $address = null,
         ?int $price = null
@@ -43,13 +43,13 @@ class ConcertInput
         $this->price = $price;
     }
 
-    public static function fromSymfonyRequest(Request $request)
+    public static function fromSymfonyRequest(Request $request): self
      {
         $response = $request->request->all();
         $artist = isset($response['artist']) ? $response['artist'] : null;
          $date = isset($response['date']) ? $response['date'] : null;
         $address = isset($response['address']) ? $response['address'] : null;
-        $price = isset($response['price']) ? $response['price'] : null;
+        $price = isset($response['price']) ? $response['price'] : null; // FIXME: what happens if the str price is not a number-str?
 
         if ($date !== null) {
             $date = Chronos::createFromFormat('m/d/Y', $response['date']);

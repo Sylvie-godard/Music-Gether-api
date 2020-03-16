@@ -9,7 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class ConcertRepository
 {
-    private $entityManager;
+    private EntityManagerInterface $entityManager;
     
     public function __construct(EntityManagerInterface $entityManager)
     {
@@ -19,6 +19,6 @@ class ConcertRepository
     public function save(Concert $concert): void
     {
         $this->entityManager->persist($concert);
-        $this->entityManager->flush($concert);
+        $this->entityManager->flush($concert); // FIXME: flush does not have parameter
     }
 }

@@ -14,9 +14,9 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class ConcertController
 {
-    private $validator;
+    private ValidatorInterface $validator;
 
-    private $concertRepository;
+    private ConcertRepository $concertRepository;
 
     public function __construct(ValidatorInterface $validatorInterface, ConcertRepository $concertRepository)
     {
