@@ -4,11 +4,14 @@ database:
 database-clean:
 	docker-compose exec php bin/console doctrine:database:drop --force
 
-diff:
+db-diff:
 	php bin/console doctrine:migrations:diff
 
 migration:
 	docker-compose exec php bin/console doctrine:migrations:migrate --no-interaction
+
+db-migrate:
+	bin/console doctrine:migrations:migrate
 
 vendors:
 	docker-compose exec php composer install
@@ -42,7 +45,6 @@ clean:
 
 docker-init: docker-down clean docker-pull docker-build docker-run vendors database migration
 docker-init-debug: docker-down clean docker-pull-debug docker-build-debug docker-run-debug vendors database migration
-
 
 clean-cache:
 	rm -r var/cache/*

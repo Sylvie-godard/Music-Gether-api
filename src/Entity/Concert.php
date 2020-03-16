@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Cake\Chronos\Chronos;
 use Doctrine\ORM\Mapping as ORM;
-use Cake\Chronos\ChronosInterface; 
+use Cake\Chronos\ChronosInterface;
 
 /**
- * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\ConcertRepository")
  */
 class Concert
@@ -42,11 +42,12 @@ class Concert
     private $price;
 
     public function __construct(
-        string $artist, 
+        string $artist,
         ChronosInterface $date,
         string $address,
         int $price
-    ) {
+    )
+    {
         $this->artist = $artist;
         $this->date = $date;
         $this->address = $address;
@@ -72,7 +73,7 @@ class Concert
 
     public function date(): ChronosInterface
     {
-        return $this->date;
+        return Chronos::createFromTimestamp($this->date->getTimestamp());
     }
 
     public function setDate(ChronosInterface $date): self

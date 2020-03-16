@@ -6,7 +6,6 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User
@@ -26,7 +25,7 @@ class User
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $lastname;
+    private $lastName;
 
     /**
      * @ORM\Column(type="integer")
@@ -48,12 +47,28 @@ class User
      */
     private $email;
 
-    public function getId(): ?int
+    public function __construct(
+        string $name,
+        string $lastName,
+        int $age,
+        string $genre,
+        string $email,
+        bool $admin
+    ) {
+        $this->name = $name;
+        $this->lastName = $lastName;
+        $this->age = $age;
+        $this->genre = $genre;
+        $this->email = $email;
+        $this->admin = $admin;
+    }
+
+    public function id(): int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function name(): string
     {
         return $this->name;
     }
@@ -65,19 +80,19 @@ class User
         return $this;
     }
 
-    public function getLastname(): ?string
+    public function lastName(): string
     {
-        return $this->lastname;
+        return $this->lastName();
     }
 
-    public function setLastname(string $lastname): self
+    public function setLastName(string $lastName): self
     {
-        $this->lastname = $lastname;
+        $this->lastName = $lastName;
 
         return $this;
     }
 
-    public function getAge(): ?int
+    public function age(): int
     {
         return $this->age;
     }
@@ -89,7 +104,7 @@ class User
         return $this;
     }
 
-    public function getGenre(): ?string
+    public function genre(): string
     {
         return $this->genre;
     }
@@ -101,7 +116,7 @@ class User
         return $this;
     }
 
-    public function getAdmin(): ?bool
+    public function admin(): bool
     {
         return $this->admin;
     }
@@ -113,7 +128,7 @@ class User
         return $this;
     }
 
-    public function getEmail(): ?string
+    public function email(): string
     {
         return $this->email;
     }

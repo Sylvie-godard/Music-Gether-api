@@ -2,8 +2,23 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-concert:
+create_concert:
     path: /concerts
     # the controller value has the format 'controller_class::method_name'
-    controller: App\Controller\ConcertController
+    controller: App\Controller\Concert\CreateConcertController
     methods:    POST
+
+get_concert:
+    path: /concerts
+    controller: App\Controller\Concert\GetConcertsController
+    methods:    GET
+
+create_user:
+    path: /users
+    controller: App\Controller\CreateUserController
+    methods:    POST
+
+get_users:
+    path: /users
+    controller: App\Controller\GetUsersController
+    methods:    GET
