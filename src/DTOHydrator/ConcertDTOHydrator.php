@@ -12,22 +12,40 @@ class ConcertDTOHydrator
 
     public function extract(ConcertDTO $concertDTO)
     {
-        $results = [];
+        $result = [];
 
         foreach ($this->fields as $field) {
             switch ($field) {
                 case 'id':
-                    $results['id'] = $concertDTO->getId();
+                    $result['id'] = $concertDTO->getId();
                     break;
                 case 'artist':
-                    $results['artist'] = $concertDTO->getArtist();
+                    $result['artist'] = $concertDTO->getArtist();
                     break;
                 case 'date':
-                    $results['date'] = $concertDTO->getDate();
+                    $result['date'] = $concertDTO->getDate();
                     break;
                 case 'price':
-                    $results['price'] = $concertDTO->getPrice();
+                    $result['price'] = $concertDTO->getPrice();
+                    break;
             }
         }
+
+        return $result;
+    }
+
+    /**
+     * @param ConcertDTO[]|array $concertsDTO
+     * @return array
+     */
+    public function extractCollection(array $concertsDTO)
+    {
+        $results = [];
+
+        foreach ($concertsDTO as $concertDTO) {
+            $results[] = $this->extract($concertDTO);
+        }
+
+        return $results;
     }
 }

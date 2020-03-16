@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Controller\Concert;
 
+use App\DTO\ConcertDTO;
+use App\DTOHydrator\ConcertDTOHydrator;
 use App\Repository\ConcertRepository;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class GetConcertsController
 {
@@ -16,11 +18,18 @@ class GetConcertsController
         $this->concertRepository = $concertRepository;
     }
 
-    public function __invoke(): Response
+    public function __invoke(): JsonResponse
     {
         $concerts = $this->concertRepository->findAll();
 
-        var_dump($results);die();
-        return new Response(null, 201);
+        $concertsDTO = [];
+        foreach ($concerts as $concert) {
+            $concertsDTO[] = new ConcertDTO($concert);
+        }
+
+        $data = new ConcertDTOHydrator();
+        $concerts = $data->extractCollection($concertsDTO);
+
+        return new JsonResponse(['data' => $concerts]);
     }
 }
