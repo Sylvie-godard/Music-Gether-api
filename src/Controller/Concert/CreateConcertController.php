@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\Controller\Concert;
 
 use App\Entity\Concert;
 use App\Exception\InvalidDataException;
