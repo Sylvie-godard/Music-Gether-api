@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-class ConcertController
+class CreateConcertController
 {
     private $validator;
 
@@ -39,6 +39,6 @@ class ConcertController
 
         $this->concertRepository->save($concert);
 
-        return new Response();
+        return new Response(null, 201);
     }
 }

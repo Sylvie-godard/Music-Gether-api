@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Cake\Chronos\ChronosInterface; 
 
 /**
- * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\ConcertRepository")
  */
 class Concert

@@ -1,10 +1,10 @@
 database:
 	php bin/console doctrine:database:create
 
-diff:
+db-diff:
 	php bin/console doctrine:migrations:diff
 
-migration:
+db-migrate:
 	bin/console doctrine:migrations:migrate
 
 vendors:

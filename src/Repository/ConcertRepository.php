@@ -19,6 +19,6 @@ class ConcertRepository
     public function save(Concert $concert): void
     {
         $this->entityManager->persist($concert);
-        $this->entityManager->flush($concert);
+        $this->entityManager->flush();
     }
 }

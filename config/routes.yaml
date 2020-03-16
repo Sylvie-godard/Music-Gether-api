@@ -5,5 +5,10 @@
 concert:
     path: /concerts
     # the controller value has the format 'controller_class::method_name'
-    controller: App\Controller\ConcertController
+    controller: App\Controller\CreateConcertController
+    methods:    POST
+
+user:
+    path: /users
+    controller: App\Controller\CreateUserController
     methods:    POST
