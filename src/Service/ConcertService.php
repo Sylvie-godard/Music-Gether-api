@@ -9,7 +9,7 @@ use App\Repository\ConcertRepository;
 
 class ConcertService
 {
-    private $concertRepository;
+    private ConcertRepository $concertRepository;
 
     public function __construct(ConcertRepository $concertRepository)
     {

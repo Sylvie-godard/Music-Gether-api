@@ -6,7 +6,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
-use Cake\Chronos\ChronosInterface; 
+use Cake\Chronos\ChronosInterface;
 
 /**
  * @ApiResource()
@@ -19,34 +19,35 @@ class Concert
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $artist;
+    private string $artist;
 
     /**
      * @ORM\Column(type="date")
      */
-    private $date;
+    private ChronosInterface $date;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $address;
+    private string $address;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $price;
+    private int $price;
 
     public function __construct(
-        string $artist, 
+        string $artist,
         ChronosInterface $date,
         string $address,
         int $price
-    ) {
+    )
+    {
         $this->artist = $artist;
         $this->date = $date;
         $this->address = $address;

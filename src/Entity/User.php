@@ -16,37 +16,37 @@ class User
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private string $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $lastname;
+    private string $lastname;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $age;
+    private int $age;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $genre;
+    private string $genre;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $admin;
+    private bool $admin;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $email;
+    private string $email;
 
     public function getId(): ?int
     {
