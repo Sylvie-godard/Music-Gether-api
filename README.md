@@ -42,3 +42,5 @@
         or
         make docker-down
 
+## Configuration Debugger PhpStorm
+https://blog.eleven-labs.com/fr/debug-run-phpunit-tests-using-docker-remote-interpreters-with-phpstorm/

@@ -8,7 +8,7 @@ diff:
 	php bin/console doctrine:migrations:diff
 
 migration:
-	docker-compose exec php bin/console doctrine:migrations:migrate
+	docker-compose exec php bin/console doctrine:migrations:migrate --no-interaction
 
 vendors:
 	docker-compose exec php composer install
