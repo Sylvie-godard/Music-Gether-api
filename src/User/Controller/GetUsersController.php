@@ -6,21 +6,21 @@ namespace App\User\Controller;
 
 use App\User\DTO\UserDTO;
 use App\User\DTOHydrator\UserDTOHydrator;
-use App\User\Repository\UserRepository;
+use App\User\Service\UserService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class GetUsersController
 {
-    private $userRepository;
+    private $userService;
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserService $userService)
     {
-        $this->userRepository = $userRepository;
+        $this->userService = $userService;
     }
 
     public function __invoke(): JsonResponse
     {
-        $users = $this->userRepository->findAll();
+        $users = $this->userService->getAll();
 
         $usersDTO = [];
         foreach ($users as $user) {

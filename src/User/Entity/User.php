@@ -81,7 +81,7 @@ class User
 
     public function lastName(): string
     {
-        return $this->lastName();
+        return $this->lastName;
     }
 
     public function setLastName(string $lastName): self

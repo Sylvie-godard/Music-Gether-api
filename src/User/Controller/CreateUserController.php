@@ -7,6 +7,7 @@ namespace App\User\Controller;
 use App\Exception\InvalidDataException;
 use App\User\Entity\User;
 use App\User\Repository\UserRepository;
+use App\User\Service\UserService;
 use App\User\Validator\UserInput;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,12 +17,12 @@ class CreateUserController
 {
     private $validator;
 
-    private $userRepository;
+    private $userService;
 
-    public function __construct(ValidatorInterface $validatorInterface, UserRepository $userRepository)
+    public function __construct(ValidatorInterface $validatorInterface, UserService $userService)
     {
         $this->validator = $validatorInterface;
-        $this->userRepository = $userRepository;
+        $this->userService = $userService;
     }
 
     public function __invoke(Request $request): Response
@@ -42,7 +43,7 @@ class CreateUserController
             false
         );
 
-        $this->userRepository->save($user);
+        $this->userService->save($user);
 
         return new Response(null, 201);
     }

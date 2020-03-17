@@ -25,5 +25,5 @@ service:
 
 
 ## Tests
-phpstan:
+test-phpstan:
 	vendor/bin/phpstan analyse src/*
