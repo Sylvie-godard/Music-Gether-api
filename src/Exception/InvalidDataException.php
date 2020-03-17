@@ -6,7 +6,7 @@ namespace App\Exception;
 
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 
-class InvalidDataException extends \Exception
+final class InvalidDataException extends \Exception
 {
     public static function fromConstraintViolations(ConstraintViolationListInterface $violationList)
     {

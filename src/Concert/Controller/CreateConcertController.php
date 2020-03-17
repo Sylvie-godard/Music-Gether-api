@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Concert;
+namespace App\Concert\Controller;
 
-use App\Entity\Concert;
+use App\Concert\Entity\Concert;
+use App\Concert\Service\ConcertService;
+use App\Concert\Validator\ConcertInput;
 use App\Exception\InvalidDataException;
-use App\Repository\ConcertRepository;
-use App\Validator\ConcertInput;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -16,12 +16,12 @@ class CreateConcertController
 {
     private $validator;
 
-    private $concertRepository;
+    private $concertService;
 
-    public function __construct(ValidatorInterface $validatorInterface, ConcertRepository $concertRepository)
+    public function __construct(ValidatorInterface $validatorInterface, ConcertService $concertService)
     {
         $this->validator = $validatorInterface;
-        $this->concertRepository = $concertRepository;
+        $this->concertService = $concertService;
     }
 
     public function __invoke(Request $request): Response
@@ -37,7 +37,7 @@ class CreateConcertController
             $concertInput->artist(), $concertInput->date(), $concertInput->address(), $concertInput->price()
         );
 
-        $this->concertRepository->save($concert);
+        $this->concertService->save($concert);
 
         return new Response(null, 201);
     }

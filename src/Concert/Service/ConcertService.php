@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Service;
+namespace App\Concert\Service;
 
-use App\Entity\Concert;
-use App\Repository\ConcertRepository;
+use App\Concert\Entity\Concert;
+use App\Concert\Repository\ConcertRepository;
 
 class ConcertService
 {
@@ -14,6 +14,11 @@ class ConcertService
     public function __construct(ConcertRepository $concertRepository)
     {
         $this->concertRepository = $concertRepository;
+    }
+
+    public function getAll(): array
+    {
+        return $this->concertRepository->findAll();
     }
 
     public function save(Concert $concert): void

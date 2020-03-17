@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\DTOHydrator;
+namespace App\Concert\DTOHydrator;
 
-use App\DTO\ConcertDTO;
+use App\Concert\DTO\ConcertDTO;
 
 class ConcertDTOHydrator
 {

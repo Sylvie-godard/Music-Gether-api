@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\DTO;
+namespace App\Concert\DTO;
 
-use App\Entity\Concert;
+use App\Concert\Entity\Concert;
 
 class ConcertDTO
 {

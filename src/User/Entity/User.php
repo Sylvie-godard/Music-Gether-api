@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Entity;
+namespace App\User\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="App\User\Repository\UserRepository")
  */
 class User
 {

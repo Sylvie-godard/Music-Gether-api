@@ -2,15 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Entity;
+namespace App\Concert\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use Cake\Chronos\Chronos;
-use Doctrine\ORM\Mapping as ORM;
 use Cake\Chronos\ChronosInterface;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ConcertRepository")
+ * @ORM\Entity(repositoryClass="App\Concert\Repository\ConcertRepository")
  */
 class Concert
 {
@@ -46,8 +45,7 @@ class Concert
         ChronosInterface $date,
         string $address,
         int $price
-    )
-    {
+    ) {
         $this->artist = $artist;
         $this->date = $date;
         $this->address = $address;
@@ -83,7 +81,7 @@ class Concert
         return $this;
     }
 
-    public function address(): ?string
+    public function address(): string
     {
         return $this->address;
     }
@@ -95,7 +93,7 @@ class Concert
         return $this;
     }
 
-    public function price(): ?int
+    public function price(): int
     {
         return $this->price;
     }

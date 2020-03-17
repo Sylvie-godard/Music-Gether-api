@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Validator;
+namespace App\User\Validator;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class UserInput
+final class UserInput
 {
     /**
      * @Assert\NotBlank
@@ -51,7 +51,7 @@ class UserInput
         ?string $genre = null,
         ?string $email = null,
         ?bool $admin = null
-    ){
+    ) {
         $this->name = $name;
         $this->lastName = $lastName;
         $this->age = $age;

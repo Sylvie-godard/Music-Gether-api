@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\User\Controller;
 
-use App\Entity\User;
 use App\Exception\InvalidDataException;
-use App\Repository\UserRepository;
-use App\Validator\UserInput;
+use App\User\Entity\User;
+use App\User\Repository\UserRepository;
+use App\User\Validator\UserInput;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Validator\ValidatorInterface;

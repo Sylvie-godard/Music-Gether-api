@@ -8,17 +8,17 @@ create_concert:
     controller: App\Controller\Concert\CreateConcertController
     methods:    POST
 
-get_concert:
+get_concerts:
     path: /concerts
-    controller: App\Controller\Concert\GetConcertsController
+    controller: App\Concert\Controller\GetConcertsController
     methods:    GET
 
 create_user:
     path: /users
-    controller: App\Controller\CreateUserController
+    controller: App\Controller\User\CreateUserController
     methods:    POST
 
 get_users:
     path: /users
-    controller: App\Controller\GetUsersController
+    controller: App\Controller\User\GetUsersController
     methods:    GET

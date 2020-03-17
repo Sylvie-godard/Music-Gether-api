@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Concert;
+namespace App\Concert\Controller;
 
-use App\DTO\ConcertDTO;
-use App\DTOHydrator\ConcertDTOHydrator;
-use App\Repository\ConcertRepository;
+use App\Concert\DTO\ConcertDTO;
+use App\Concert\DTOHydrator\ConcertDTOHydrator;
+use App\Concert\Repository\ConcertRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class GetConcertsController

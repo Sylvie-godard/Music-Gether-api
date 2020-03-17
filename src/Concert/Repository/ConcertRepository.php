@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Repository;
+namespace App\Concert\Repository;
 
-use App\Entity\Concert;
+use App\Concert\Entity\Concert;
 use Doctrine\ORM\EntityManagerInterface;
 
 class ConcertRepository
