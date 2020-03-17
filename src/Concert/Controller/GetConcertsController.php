@@ -4,32 +4,26 @@ declare(strict_types=1);
 
 namespace App\Concert\Controller;
 
-use App\Concert\DTO\ConcertDTO;
 use App\Concert\DTOHydrator\ConcertDTOHydrator;
-use App\Concert\Repository\ConcertRepository;
+use App\Concert\Service\ConcertService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class GetConcertsController
 {
-    private $concertRepository;
+    private $concertService;
 
-    public function __construct(ConcertRepository $concertRepository)
+    public function __construct(ConcertService $concertService)
     {
-        $this->concertRepository = $concertRepository;
+        $this->concertService = $concertService;
     }
 
     public function __invoke(): JsonResponse
     {
-        $concerts = $this->concertRepository->findAll();
-
-        $concertsDTO = [];
-        foreach ($concerts as $concert) {
-            $concertsDTO[] = new ConcertDTO($concert);
-        }
+        $concerts = $this->concertService->getAll();
 
         $data = new ConcertDTOHydrator();
-        $concerts = $data->extractCollection($concertsDTO);
+        $data = $data->extractCollection($this->concertService->getConcertsDTOFromConcerts($concerts));
 
-        return new JsonResponse(['data' => $concerts]);
+        return new JsonResponse(['data' => $data]);
     }
 }

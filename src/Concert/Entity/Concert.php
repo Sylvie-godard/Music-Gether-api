@@ -62,23 +62,9 @@ class Concert
         return $this->artist;
     }
 
-    public function setArtist(string $artist): self
-    {
-        $this->artist = $artist;
-
-        return $this;
-    }
-
     public function date(): ChronosInterface
     {
         return Chronos::createFromTimestamp($this->date->getTimestamp());
-    }
-
-    public function setDate(ChronosInterface $date): self
-    {
-        $this->date = $date;
-
-        return $this;
     }
 
     public function address(): string
@@ -86,22 +72,8 @@ class Concert
         return $this->address;
     }
 
-    public function setAddress(string $address): self
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
     public function price(): int
     {
         return $this->price;
-    }
-
-    public function setPrice(int $price): self
-    {
-        $this->price = $price;
-
-        return $this;
     }
 }
