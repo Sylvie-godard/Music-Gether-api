@@ -72,7 +72,7 @@ class User
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function updateName(string $name): self
     {
         $this->name = $name;
 
@@ -84,7 +84,7 @@ class User
         return $this->lastName;
     }
 
-    public function setLastName(string $lastName): self
+    public function updateLastName(string $lastName): self
     {
         $this->lastName = $lastName;
 
@@ -96,7 +96,7 @@ class User
         return $this->age;
     }
 
-    public function setAge(int $age): self
+    public function updateAge(int $age): self
     {
         $this->age = $age;
 
@@ -108,7 +108,7 @@ class User
         return $this->genre;
     }
 
-    public function setGenre(string $genre): self
+    public function updateGenre(string $genre): self
     {
         $this->genre = $genre;
 
@@ -120,7 +120,7 @@ class User
         return $this->admin;
     }
 
-    public function setAdmin(bool $admin): self
+    public function updateAdmin(bool $admin): self
     {
         $this->admin = $admin;
 
@@ -132,7 +132,7 @@ class User
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function updateEmail(string $email): self
     {
         $this->email = $email;
 
