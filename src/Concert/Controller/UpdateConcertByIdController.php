@@ -2,27 +2,27 @@
 
 declare(strict_types=1);
 
-namespace App\User\Controller;
+namespace App\Concert\Controller;
 
+use App\Concert\DTO\ConcertDTO;
+use App\Concert\DTOHydrator\ConcertDTOHydrator;
+use App\Concert\Service\ConcertService;
+use App\Concert\Validator\UpdateConcertInput;
 use App\Exception\InvalidDataException;
-use App\User\DTO\UserDTO;
-use App\User\DTOHydrator\UserDTOHydrator;
-use App\User\Service\UserService;
-use App\User\Validator\UpdateUserInput;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-class UpdateUserByIdController
+class UpdateConcertByIdController
 {
-    private $userService;
+    private $concertService;
 
     private $validator;
 
-    public function __construct(UserService $userService, ValidatorInterface $validator)
+    public function __construct(ConcertService $concertService, ValidatorInterface $validator)
     {
-        $this->userService = $userService;
+        $this->concertService = $concertService;
         $this->validator = $validator;
     }
 
@@ -36,18 +36,18 @@ class UpdateUserByIdController
     {
         $response = (array) \json_decode($request->getContent());
 
-        $data = UpdateUserInput::fromSymfonyRequestData($response);
+        $data = UpdateConcertInput::fromSymfonyRequestData($response);
         $errors = $this->validator->validate($data);
 
         if (\count($errors) > 0) {
             throw InvalidDataException::fromConstraintViolations($errors);
         }
 
-        $user = $this->userService->getById($id);
-        $this->userService->update($user, $response);
+        $concert = $this->concertService->getById($id);
+        $this->concertService->update($concert, $response);
 
-        $data = new UserDTOHydrator();
-        $data = $data->extract(new UserDTO($user));
+        $data = new ConcertDTOHydrator();
+        $data = $data->extract(new ConcertDTO($concert));
 
         return new JsonResponse(['data' => $data]);
     }

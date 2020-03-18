@@ -15,6 +15,16 @@ get_concerts:
     controller: App\Concert\Controller\GetConcertsController
     methods:    GET
 
+get_concert_by_id:
+    path: /concerts/{id}
+    controller: App\Concert\Controller\GetConcertByIdController
+    methods:    GET
+
+update_concert_by_id:
+    path: /concerts/{id}
+    controller: App\Concert\Controller\UpdateConcertByIdController
+    methods:    PUT
+
 ## USER ##
 create_user:
     path: /users

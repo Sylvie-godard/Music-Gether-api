@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\User\Validator;
 
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 
 final class UpdateUserInput
@@ -61,10 +60,8 @@ final class UpdateUserInput
         $this->admin = $admin;
     }
 
-    public static function fromSymfonyRequest(Request $request)
+    public static function fromSymfonyRequestData(array $response)
     {
-        $response = $request->request->all();
-
         $name = isset($response['name']) ? $response['name'] : null;
         $lastName = isset($response['lastName']) ? $response['lastName'] : null;
         $age = isset($response['age']) ? $response['age'] : null;

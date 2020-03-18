@@ -7,6 +7,8 @@ namespace App\Concert\Service;
 use App\Concert\DTO\ConcertDTO;
 use App\Concert\Entity\Concert;
 use App\Concert\Repository\ConcertRepository;
+use Cake\Chronos\Chronos;
+use Doctrine\ORM\NonUniqueResultException;
 
 class ConcertService
 {
@@ -29,6 +31,41 @@ class ConcertService
         }
 
         return $concertsDTO;
+    }
+
+    public function update(Concert $concert, array $fields): Concert
+    {
+        foreach ($fields as $key => $value) {
+            switch ($key) {
+                case 'artist':
+                    $concert->updateArtist($value);
+                    break;
+                case 'address':
+                    $concert->updateAddress($value);
+                    break;
+                case 'date':
+                    $date = Chronos::createFromFormat('m/d/Y', $value);
+                    $concert->updateDate($date);
+                    break;
+                case 'price':
+                    $concert->updatePrice($value);
+                    break;
+            }
+        }
+
+        $this->save($concert);
+
+        return $concert;
+    }
+
+    /**
+     * @param int $id
+     * @return Concert
+     * @throws NonUniqueResultException
+     */
+    public function getById(int $id): Concert
+    {
+        return $this->concertRepository->findById($id);
     }
 
     public function getAll(): array

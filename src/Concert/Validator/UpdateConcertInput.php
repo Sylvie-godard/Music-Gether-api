@@ -4,37 +4,38 @@ declare(strict_types=1);
 
 namespace App\Concert\Validator;
 
-use Cake\Chronos\Chronos;
-use Cake\Chronos\ChronosInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 
-final class ConcertInput
+final class UpdateConcertInput
 {
     /**
-     * @Assert\NotBlank
+     * @Assert\Type("string")
+     * @var string|null
      */
     private $artist;
 
     /**
-     * @Assert\NotBlank
+     * @Assert\Type("string")
+     * @var string|null
      */
     private $date;
 
     /**
-     * @Assert\NotBlank
+     * @Assert\Type("string")
+     * @var string|null
      */
     private $address;
 
     /**
-     * @Assert\NotBlank
+     * @Assert\Type("integer")
+     * @var int|null
      */
     private $price;
 
     private function __construct(
         ?string $artist = null,
-        ?ChronosInterface $date = null,
-        ?string $address = null,
+        ?string $date = null,
+        ?int $address = null,
         ?int $price = null
     ) {
         $this->artist = $artist;
@@ -43,38 +44,33 @@ final class ConcertInput
         $this->price = $price;
     }
 
-    public static function fromSymfonyRequest(Request $request)
+    public static function fromSymfonyRequestData(array $response)
     {
-        $response = $request->request->all();
         $artist = isset($response['artist']) ? $response['artist'] : null;
         $date = isset($response['date']) ? $response['date'] : null;
         $address = isset($response['address']) ? $response['address'] : null;
         $price = isset($response['price']) ? $response['price'] : null;
 
-        if (null !== $date) {
-            $date = Chronos::createFromFormat('m/d/Y', $response['date']);
-        }
-
         return new static($artist, $date, $address, (int) $price);
     }
 
-    public function address(): string
-    {
-        return $this->address;
-    }
-
-    public function artist(): string
+    public function getArtist(): ?string
     {
         return $this->artist;
     }
 
-    public function price(): int
-    {
-        return $this->price;
-    }
-
-    public function date(): ChronosInterface
+    public function getDate(): ?string
     {
         return $this->date;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function getPrice(): ?int
+    {
+        return $this->price;
     }
 }
