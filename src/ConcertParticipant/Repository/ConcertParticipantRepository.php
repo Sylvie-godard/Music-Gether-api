@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\ConcertParticipant\Repository;
 
 use App\Concert\Entity\Concert;
+use App\ConcertParticipant\Entity\ConcertParticipant;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 
@@ -17,36 +18,31 @@ class ConcertParticipantRepository
         $this->entityManager = $entityManager;
     }
 
-    /**
-     * @param int $id
-     * @return Concert
-     * @throws NonUniqueResultException
-     */
-    public function findById(int $id): Concert
+    public function findByConcertId(int $concertId): array
     {
         return $this->entityManager
             ->createQueryBuilder()
-            ->select('c')
-            ->from(Concert::class, 'c')
-            ->where('c.id = :id')
-            ->setParameter('id', $id)
+            ->select('cp')
+            ->from(ConcertParticipant::class, 'cp')
+            ->where('cp.concertId = :concertId')
+            ->setParameter('concertId', $concertId)
             ->getQuery()
-            ->getOneOrNullResult();
+            ->getResult();
     }
 
     public function findAll(): array
     {
         return $this->entityManager
             ->createQueryBuilder()
-            ->select('c')
-            ->from(Concert::class, 'c')
+            ->select('cp')
+            ->from(ConcertParticipant::class, 'cp')
             ->getQuery()
             ->getResult();
     }
 
-    public function save(Concert $concert): void
+    public function save(ConcertParticipant $concertParticipant): void
     {
-        $this->entityManager->persist($concert);
+        $this->entityManager->persist($concertParticipant);
         $this->entityManager->flush();
     }
 }

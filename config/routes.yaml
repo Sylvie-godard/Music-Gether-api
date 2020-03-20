@@ -44,3 +44,19 @@ update_user_by_id:
     path: /users/{id}
     controller: App\User\Controller\UpdateUserByIdController
     methods:    PUT
+
+## CONCERT PARTICIPANT ##
+get_concert_participants:
+    path: /concertParticipants
+    controller: App\ConcertParticipant\Controller\GetConcertParticipantsController
+    methods: GET
+
+create_concert_participant:
+    path: /concertParticipants
+    controller: App\ConcertParticipant\Controller\CreateConcertParticipantController
+    methods: POST
+
+get_concert_participants_by_concert_id:
+    path: /concertParticipants/{id}
+    controller: App\ConcertParticipant\Controller\GetConcertParticipantByConcertId
+    methods: GET

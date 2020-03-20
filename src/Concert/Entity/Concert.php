@@ -40,8 +40,6 @@ class Concert
      */
     private $price;
 
-    private $participants;
-
     public function __construct(
         string $artist,
         ChronosInterface $date,
