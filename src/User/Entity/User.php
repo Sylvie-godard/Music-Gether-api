@@ -46,13 +46,27 @@ class User
      */
     private $email;
 
+    /**
+     * @ORM\Column(type="string", nullable=true, length=255)
+     */
+    private $photoUrl;
+
+    /**
+     * @ORM\Column(type="string", nullable=true, length=255)
+     *
+     * @var string
+     */
+    private $password;
+
     public function __construct(
         string $name,
         string $lastName,
         int $age,
         string $genre,
         string $email,
-        bool $admin
+        bool $admin,
+        ?string $photoUrl = null,
+        ?string $password = null
     ) {
         $this->name = $name;
         $this->lastName = $lastName;
@@ -60,6 +74,8 @@ class User
         $this->genre = $genre;
         $this->email = $email;
         $this->admin = $admin;
+        $this->photoUrl = $photoUrl;
+        $this->password = $password;
     }
 
     public function id(): int
@@ -137,5 +153,15 @@ class User
         $this->email = $email;
 
         return $this;
+    }
+
+    public function photoUrl(): ?string
+    {
+        return $this->photoUrl;
+    }
+
+    public function password(): ?string
+    {
+        return $this->password;
     }
 }

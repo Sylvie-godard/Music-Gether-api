@@ -2,7 +2,6 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-
 ## CONCERT ##
 create_concert:
     path: /concerts
