@@ -104,6 +104,16 @@ VOLUME /srv/api/var
 
 CMD ["php-fpm"]
 
+FROM music_gether_php AS music_gether_php_dev
+
+ARG XDEBUG_VERSION=2.9.2
+RUN set -eux; \
+	apk add --no-cache --virtual .build-deps $PHPIZE_DEPS; \
+	pecl install xdebug-$XDEBUG_VERSION; \
+	docker-php-ext-enable xdebug; \
+	apk del .build-deps
+
+
 # "nginx" stage
 # depends on the "php" stage above
 FROM nginx:${NGINX_VERSION}-alpine AS music_gether_nginx

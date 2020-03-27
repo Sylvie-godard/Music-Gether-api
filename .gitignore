@@ -13,3 +13,7 @@
 .php_cs.cache
 # Ignore idea
 .idea
+###> friendsofphp/php-cs-fixer ###
+/.php_cs
+/.php_cs.cache
+###< friendsofphp/php-cs-fixer ###
