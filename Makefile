@@ -1,3 +1,5 @@
+
+## DATABASE ##
 database:
 	docker-compose exec php bin/console doctrine:database:create --if-not-exists
 
@@ -13,9 +15,11 @@ migration:
 db-migrate:
 	bin/console doctrine:migrations:migrate
 
+## VENDORS ##
 vendors:
 	docker-compose exec php composer install
 
+## Docker ##
 docker-pull:
 	docker-compose -f docker-compose.yaml pull
 
@@ -39,12 +43,16 @@ docker-down:
 
 docker-logs:
 	docker-compose logs -f
-
-clean:
-	rm -rf ./vendor ./var
+ps:
+	docker ps
 
 docker-init: docker-down clean docker-pull docker-build docker-run vendors database migration
 docker-init-debug: docker-down clean docker-pull-debug docker-build-debug docker-run-debug vendors database migration
+
+
+## CLEAN ##
+clean:
+	rm -rf ./vendor ./var
 
 clean-cache:
 	rm -r var/cache/*

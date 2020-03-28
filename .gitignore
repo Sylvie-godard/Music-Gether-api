@@ -10,7 +10,6 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
-.php_cs.cache
 # Ignore idea
 .idea
 ###> friendsofphp/php-cs-fixer ###
