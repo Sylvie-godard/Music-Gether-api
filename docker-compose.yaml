@@ -29,10 +29,6 @@ services:
       - MYSQL_ROOT_PASSWORD=pass
     volumes:
       - db-data:/var/lib/mysql
-    ports:
-      - target: 3306
-        published: 3306
-        protocol: tcp
 
 volumes:
   db-data: {}
