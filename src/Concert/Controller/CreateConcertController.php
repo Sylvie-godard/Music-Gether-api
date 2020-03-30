@@ -14,9 +14,9 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class CreateConcertController
 {
-    private $validator;
+    private ValidatorInterface $validator;
 
-    private $concertService;
+    private ConcertService $concertService;
 
     public function __construct(ValidatorInterface $validatorInterface, ConcertService $concertService)
     {
@@ -24,6 +24,11 @@ class CreateConcertController
         $this->concertService = $concertService;
     }
 
+    /**
+     * @param Request $request
+     * @return Response
+     * @throws InvalidDataException
+     */
     public function __invoke(Request $request): Response
     {
         $concertInput = ConcertInput::fromSymfonyRequest($request);

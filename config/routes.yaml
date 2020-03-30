@@ -48,15 +48,15 @@ update_user_by_id:
 ## CONCERT PARTICIPANT ##
 get_concert_participants:
     path: /concertParticipants
-    controller: App\ConcertParticipant\Controller\GetConcertParticipantsController
+    controller: App\Concert\Controller\GetConcertParticipantsController
     methods: GET
 
 create_concert_participant:
     path: /concertParticipants
-    controller: App\ConcertParticipant\Controller\CreateConcertParticipantController
+    controller: App\Concert\Controller\CreateConcertParticipantController
     methods: POST
 
 get_concert_participants_by_concert_id:
     path: /concertParticipants/{id}
-    controller: App\ConcertParticipant\Controller\GetConcertParticipantByConcertId
+    controller: App\Concert\Controller\GetConcertParticipantByConcertId
     methods: GET

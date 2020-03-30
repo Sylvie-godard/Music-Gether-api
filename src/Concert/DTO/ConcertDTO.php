@@ -8,6 +8,8 @@ use App\Concert\Entity\Concert;
 
 class ConcertDTO
 {
+    private int $ok;
+
     private $id;
 
     private $artist;

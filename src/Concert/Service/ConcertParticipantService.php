@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\ConcertParticipant\Service;
+namespace App\Concert\Service;
 
-use App\ConcertParticipant\DTO\ConcertParticipantDTO;
-use App\ConcertParticipant\Entity\ConcertParticipant;
-use App\ConcertParticipant\Repository\ConcertParticipantRepository;
+use App\Concert\DTO\ConcertParticipantDTO;
+use App\Concert\Entity\ConcertParticipant;
+use App\Concert\Repository\ConcertParticipantRepository;
 
 class ConcertParticipantService
 {

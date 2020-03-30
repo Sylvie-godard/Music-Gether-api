@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\ConcertParticipant\DTO;
+namespace App\Concert\DTO;
 
-use App\ConcertParticipant\Entity\ConcertParticipant;
+use App\Concert\Entity\ConcertParticipant;
 
 class ConcertParticipantDTO
 {

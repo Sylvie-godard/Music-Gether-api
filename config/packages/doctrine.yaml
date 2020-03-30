@@ -22,9 +22,3 @@ doctrine:
                 dir: '%kernel.project_dir%/src/User/Entity'
                 prefix: 'App\User\Entity'
                 alias: User
-            ConcertParticipant:
-                is_bundle: false
-                type: annotation
-                dir: '%kernel.project_dir%/src/ConcertParticipant/Entity'
-                prefix: 'App\ConcertParticipant\Entity'
-                alias: ConcertParticipant

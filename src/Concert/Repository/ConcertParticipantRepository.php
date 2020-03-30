@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\ConcertParticipant\Repository;
+namespace App\Concert\Repository;
 
 use App\Concert\Entity\Concert;
-use App\ConcertParticipant\Entity\ConcertParticipant;
+use App\Concert\Entity\ConcertParticipant;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 

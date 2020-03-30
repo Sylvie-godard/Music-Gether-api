@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\ConcertParticipant\Validator;
+namespace App\Concert\Validator;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;

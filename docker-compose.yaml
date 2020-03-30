@@ -15,7 +15,7 @@ services:
   api:
     build:
       context: ./
-      target: music_gether_nginx
+      target: music_gether_nginxaa
     depends_on:
       - php
     volumes:

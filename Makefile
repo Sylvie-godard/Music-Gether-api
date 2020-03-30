@@ -6,18 +6,18 @@ database-clean:
 	docker-compose exec php bin/console doctrine:database:drop --force
 
 db-diff:
-	php bin/console doctrine:migrations:diff
+	docker-compose exec php bin/console doctrine:migrations:diff
 
 migration:
 	docker-compose exec php bin/console doctrine:migrations:migrate --no-interaction
 
 db-migrate:
-	bin/console doctrine:migrations:migrate
+	docker-compose exec php bin/console doctrine:migrations:migrate
 
 
 ## VENDORS ##
 vendors:
-	docker-compose exec php composer install
+	docker-compose exec php php -n /usr/bin/composer install
 
 ## Docker ##
 docker-pull:
@@ -61,9 +61,9 @@ clean-cache:
 
 ## Service
 service:
-	php bin/console debug:autowiring
+	docker-compose exec php bin/console debug:autowiring
 
 
 ## Tests
 test-phpstan:
-	vendor/bin/phpstan analyse src/*
+	docker-compose exec php vendor/bin/phpstan analyse src/*

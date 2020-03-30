@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\ConcertParticipant\Controller;
+namespace App\Concert\Controller;
 
-use App\ConcertParticipant\Entity\ConcertParticipant;
-use App\ConcertParticipant\Service\ConcertParticipantService;
-use App\ConcertParticipant\Validator\ConcertParticipantInput;
+use App\Concert\Entity\ConcertParticipant;
+use App\Concert\Service\ConcertParticipantService;
+use App\Concert\Validator\ConcertParticipantInput;
 use App\Exception\InvalidDataException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

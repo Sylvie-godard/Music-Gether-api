@@ -1,23 +1,23 @@
 <?php
 
-namespace App\ConcertParticipant\Entity;
+namespace App\Concert\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\ConcertParticipant\Repository\ConcertParticipantRepository")
+ * @ORM\Entity(repositoryClass="App\Concert\Repository\ConcertParticipantRepository")
  */
 class ConcertParticipant
 {
     /**
      * @ORM\Id @ORM\Column(type="integer", length=255)
      */
-    private $userId;
+    private int $userId;
 
     /**
      * @ORM\Id @ORM\Column(type="integer", length=255)
      */
-    private $concertId;
+    private int $concertId;
 
     public function __construct(int $userId, int $concertId)
     {

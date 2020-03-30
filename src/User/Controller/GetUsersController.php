@@ -21,7 +21,6 @@ class GetUsersController
     public function __invoke(): JsonResponse
     {
         $users = $this->userService->getAll();
-
         $usersDTO = [];
         foreach ($users as $user) {
             $usersDTO[] = new UserDTO($user);

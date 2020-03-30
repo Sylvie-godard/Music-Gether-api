@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\ConcertParticipant\Controller;
+namespace App\Concert\Controller;
 
 use App\Concert\DTOHydrator\ConcertParticipantDTOHydrator;
-use App\ConcertParticipant\Service\ConcertParticipantService;
+use App\Concert\Service\ConcertParticipantService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class GetConcertParticipantByConcertId

@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class GetConcertsController
 {
-    private $concertService;
+    private ConcertService $concertService;
 
     public function __construct(ConcertService $concertService)
     {
