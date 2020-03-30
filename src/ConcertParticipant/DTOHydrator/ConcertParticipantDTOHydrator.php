@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Concert\DTOHydrator;
+namespace App\ConcertParticipant\DTOHydrator;
 
 use App\ConcertParticipant\DTO\ConcertParticipantDTO;
 

@@ -29,6 +29,8 @@ services:
       - MYSQL_ROOT_PASSWORD=pass
     volumes:
       - db-data:/var/lib/mysql
+    ports:
+      - 9999:3306
 
 volumes:
   db-data: {}
