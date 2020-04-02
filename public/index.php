@@ -1,4 +1,5 @@
 <?php
+header('Access-Control-Allow-Origin: http://localhost:3000');
 
 use App\Kernel;
 use Symfony\Component\ErrorHandler\Debug;

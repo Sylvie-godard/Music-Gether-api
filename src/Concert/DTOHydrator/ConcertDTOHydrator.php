@@ -8,7 +8,7 @@ use App\Concert\DTO\ConcertDTO;
 
 class ConcertDTOHydrator
 {
-    private $fields = ['id', 'artist', 'addresss', 'date', 'price'];
+    private array $fields = ['id', 'artist', 'address', 'date', 'price'];
 
     public function extract(ConcertDTO $concertDTO)
     {
@@ -21,6 +21,9 @@ class ConcertDTOHydrator
                     break;
                 case 'artist':
                     $result['artist'] = $concertDTO->getArtist();
+                    break;
+                case 'address':
+                    $result['address'] = $concertDTO->getAddress();
                     break;
                 case 'date':
                     $result['date'] = $concertDTO->getDate();
