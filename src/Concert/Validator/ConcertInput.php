@@ -31,31 +31,46 @@ final class ConcertInput
      */
     private $price;
 
+    /**
+     * @Assert\NotBlank
+     */
+    private $photoUrl;
+
     private function __construct(
         ?string $artist = null,
         ?ChronosInterface $date = null,
         ?string $address = null,
-        ?int $price = null
+        ?int $price = null,
+        ?string $photoUrl = null
     ) {
         $this->artist = $artist;
         $this->date = $date;
         $this->address = $address;
         $this->price = $price;
+        $this->photoUrl = $photoUrl;
     }
 
     public static function fromSymfonyRequest(Request $request)
     {
         $response = $request->request->all();
-        $artist = isset($response['artist']) ? $response['artist'] : null;
-        $date = isset($response['date']) ? $response['date'] : null;
-        $address = isset($response['address']) ? $response['address'] : null;
-        $price = isset($response['price']) ? $response['price'] : null;
+        $date = $response['date'] ??= null;
+        $price = $response['price'] ??= null;
 
         if (null !== $date) {
             $date = Chronos::createFromFormat('m/d/Y', $response['date']);
         }
 
-        return new static($artist, $date, $address, (int) $price);
+        if (null !== $price) {
+            $price = (int) $price;
+        }
+
+        return new static(
+            $response['artist'] ??= null,
+            $date,
+            $response['address'] ??= null,
+            $price,
+            $response['photo_url'] ??= null
+        );
     }
 
     public function address(): string
@@ -76,5 +91,10 @@ final class ConcertInput
     public function date(): ChronosInterface
     {
         return $this->date;
+    }
+
+    public function photoUrl(): string
+    {
+        return $this->photoUrl;
     }
 }

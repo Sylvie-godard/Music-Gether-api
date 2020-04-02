@@ -44,7 +44,7 @@ class ConcertService
                     $concert->updateAddress($value);
                     break;
                 case 'date':
-                    $date = Chronos::createFromFormat('m/d/Y', $value);
+                    $date = \DateTime::createFromFormat('m/d/Y', $value);
                     $concert->updateDate($date);
                     break;
                 case 'price':

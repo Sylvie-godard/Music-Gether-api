@@ -8,17 +8,17 @@ use App\Concert\Entity\Concert;
 
 class ConcertDTO
 {
-    private int $ok;
+    private int $id;
 
-    private $id;
+    private string $artist;
 
-    private $artist;
+    private string $date;
 
-    private $date;
+    private string $address;
 
-    private $address;
+    private int $price;
 
-    private $price;
+    private string $photoUrl;
 
     public function __construct(Concert $concert)
     {
@@ -27,6 +27,7 @@ class ConcertDTO
         $this->date = $concert->date()->toDateString();
         $this->address = $concert->address();
         $this->price = $concert->price();
+        $this->photoUrl = $concert->photoUrl();
     }
 
     public function getId(): int
@@ -52,5 +53,10 @@ class ConcertDTO
     public function getPrice(): int
     {
         return $this->price;
+    }
+
+    public function getPhotoUrl(): string
+    {
+        return $this->photoUrl;
     }
 }

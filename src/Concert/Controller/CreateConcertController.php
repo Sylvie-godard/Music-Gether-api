@@ -39,7 +39,11 @@ class CreateConcertController
         }
 
         $concert = new Concert(
-            $concertInput->artist(), $concertInput->date(), $concertInput->address(), $concertInput->price()
+            $concertInput->artist(),
+            $concertInput->date(),
+            $concertInput->address(),
+            $concertInput->price(),
+            $concertInput->photoUrl(),
         );
 
         $this->concertService->save($concert);

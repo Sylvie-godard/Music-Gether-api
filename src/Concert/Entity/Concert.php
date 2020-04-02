@@ -28,7 +28,7 @@ class Concert
     /**
      * @ORM\Column(type="date")
      */
-    private \DateTime $date;
+    private $date;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -40,16 +40,23 @@ class Concert
      */
     private int $price;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private string $photoUrl;
+
     public function __construct(
         string $artist,
         ChronosInterface $date,
         string $address,
-        int $price
+        int $price,
+        string $photoUrl
     ) {
         $this->artist = $artist;
         $this->date = $date;
         $this->address = $address;
         $this->price = $price;
+        $this->photoUrl = $photoUrl;
     }
 
     public function id(): int
@@ -74,7 +81,7 @@ class Concert
         return Chronos::createFromTimestamp($this->date->getTimestamp());
     }
 
-    public function updateDate(ChronosInterface $date): self
+    public function updateDate(\DateTime $date): self
     {
         $this->date = $date;
 
@@ -103,5 +110,15 @@ class Concert
         $this->price = $price;
 
         return $this;
+    }
+
+    public function photoUrl(): string
+    {
+        return $this->photoUrl;
+    }
+
+    public function updatePhotoUrl(string $photoUrl): void
+    {
+        $this->photoUrl = $photoUrl;
     }
 }
