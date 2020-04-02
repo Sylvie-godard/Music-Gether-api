@@ -24,7 +24,7 @@ class ConcertDTO
     {
         $this->id = $concert->id();
         $this->artist = $concert->artist();
-        $this->date = $concert->date()->toDateString();
+        $this->date = $concert->date()->toDayDateTimeString();
         $this->address = $concert->address();
         $this->price = $concert->price();
         $this->photoUrl = $concert->photoUrl();

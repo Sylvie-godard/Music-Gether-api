@@ -67,3 +67,6 @@ service:
 ## Tests
 test-phpstan:
 	docker-compose exec php vendor/bin/phpstan analyse src/*
+
+load-fixture:
+	docker-compose exec php bin/console doctrine:fixtures:load
