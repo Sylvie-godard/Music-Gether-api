@@ -8,7 +8,16 @@ use App\User\DTO\UserDTO;
 
 class UserDTOHydrator
 {
-    private $fields = ['id', 'name', 'lastName', 'age', 'email', 'genre', 'admin'];
+    private $fields = [
+        'id',
+        'name',
+        'lastName',
+        'age',
+        'email',
+        'genre',
+        'admin',
+        'photo_url',
+    ];
 
     public function extract(UserDTO $userDTO)
     {
@@ -34,6 +43,8 @@ class UserDTOHydrator
                 case 'genre':
                     $result['genre'] = $userDTO->getGenre();
                     break;
+                case 'photo_url':
+                    $result['photo_url'] = $userDTO->getPhotoUrl();
             }
         }
 

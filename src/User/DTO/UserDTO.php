@@ -8,19 +8,19 @@ use App\User\Entity\User;
 
 class UserDTO
 {
-    private $id;
+    private int $id;
 
-    private $name;
+    private string $name;
 
-    private $lastName;
+    private string $lastName;
 
-    private $age;
+    private int $age;
 
-    private $admin;
+    private string $genre;
 
-    private $genre;
+    private string $email;
 
-    private $email;
+    private string $photoUrl;
 
     public function __construct(User $user)
     {
@@ -28,9 +28,9 @@ class UserDTO
         $this->name = $user->name();
         $this->lastName = $user->lastName();
         $this->age = $user->age();
-        $this->admin = $user->admin();
         $this->genre = $user->genre();
         $this->email = $user->email();
+        $this->photoUrl = $user->photoUrl();
     }
 
     public function getId(): int
@@ -53,11 +53,6 @@ class UserDTO
         return $this->age;
     }
 
-    public function isAdmin(): bool
-    {
-        return $this->admin;
-    }
-
     public function getGenre(): string
     {
         return $this->genre;
@@ -66,5 +61,10 @@ class UserDTO
     public function getEmail(): string
     {
         return $this->email;
+    }
+
+    public function getPhotoUrl(): ?string
+    {
+        return $this->photoUrl;
     }
 }
