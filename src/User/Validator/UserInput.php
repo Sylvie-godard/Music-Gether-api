@@ -13,36 +13,47 @@ final class UserInput
      * @Assert\NotBlank
      * @var string|null
      */
-    private $name;
+    private ?string $name;
 
     /**
      * @Assert\NotBlank
      * @var string|null
      */
-    private $lastName;
+    private ?string $lastName;
 
     /**
      * @Assert\NotBlank
      * @var string|null
      */
-    private $email;
+    private ?string $email;
 
     /**
      * @Assert\NotBlank
      * @var int|null
      */
-    private $age;
+    private ?int $age;
 
     /**
      * @Assert\NotBlank
      * @var string|null
      */
-    private $genre;
+    private ?string $genre;
 
     /**
      * @var bool|null
      */
-    private $admin;
+    private ?bool $admin;
+
+    /**
+     * @Assert\NotBlank
+     * @var string|null
+     */
+    private ?string $password;
+
+    /**
+     * @var string|null
+     */
+    private ?string $photoUrl;
 
     private function __construct(
         ?string $name = null,
@@ -50,7 +61,9 @@ final class UserInput
         ?int $age = null,
         ?string $genre = null,
         ?string $email = null,
-        ?bool $admin = null
+        ?bool $admin = null,
+        ?string $password = null,
+        ?string $photoUrl = null
     ) {
         $this->name = $name;
         $this->lastName = $lastName;
@@ -58,19 +71,36 @@ final class UserInput
         $this->genre = $genre;
         $this->email = $email;
         $this->admin = $admin;
+        $this->password = $password;
+        $this->photoUrl = $photoUrl;
     }
 
     public static function fromSymfonyRequest(Request $request)
     {
         $response = $request->request->all();
 
-        $name = isset($response['name']) ? $response['name'] : null;
-        $lastName = isset($response['lastName']) ? $response['lastName'] : null;
-        $age = isset($response['age']) ? $response['age'] : null;
-        $genre = isset($response['genre']) ? $response['genre'] : null;
-        $email = isset($response['email']) ? $response['email'] : null;
+        $name = $response['name'] ??= null;
+        $lastName = $response['lastName'] ??= null;
+        $age = $response['age'] ??= null;
+        $genre = $response['genre'] ??= null;
+        $email = $response['email'] ??= null;
+        $password = $response['password'] ??= null;
+        $photoUrl = $response['photoUrl'] ??= null;
 
-        return new static($name, $lastName, (int) $age, $genre, $email, false);
+        if ($age !== null) {
+            $age = (int) $age;
+        }
+
+        return new static(
+            $name,
+            $lastName,
+            $age,
+            $genre,
+            $email,
+            false,
+            $password,
+            $photoUrl
+        );
     }
 
     public function name(): string

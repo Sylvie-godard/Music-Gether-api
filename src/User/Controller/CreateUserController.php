@@ -15,9 +15,9 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class CreateUserController
 {
-    private $validator;
+    private ValidatorInterface $validator;
 
-    private $userService;
+    private UserService $userService;
 
     public function __construct(ValidatorInterface $validatorInterface, UserService $userService)
     {
@@ -25,6 +25,11 @@ class CreateUserController
         $this->userService = $userService;
     }
 
+    /**
+     * @param Request $request
+     * @return Response
+     * @throws InvalidDataException
+     */
     public function __invoke(Request $request): Response
     {
         $userInput = UserInput::fromSymfonyRequest($request);
@@ -40,7 +45,8 @@ class CreateUserController
             $userInput->age(),
             $userInput->genre(),
             $userInput->email(),
-            false
+            false,
+
         );
 
         $this->userService->save($user);

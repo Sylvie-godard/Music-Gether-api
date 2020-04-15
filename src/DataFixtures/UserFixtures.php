@@ -17,28 +17,28 @@ class UserFixtures extends Fixture
             'Sylvie',
             'Godard',
             '25', 'female', 'sylvie@sylvie.com',
-            1, 'sylvie.jpg', 'test'
+            1, 'test', 'sylvie.jpg'
         );
 
         $users[] = new User(
             'Xavier',
             'Godard',
             '26', 'female', 'xavier@xavier.com',
-            0, 'xavier.jpg', 'test3'
+            0, 'test3', 'xavier.jpg'
         );
 
         $users[] = new User(
             'Christelle',
             'Yamga',
             '25', 'female', 'chri@chri.com',
-            0, 'christelle.jpg', 'test2'
+            0, 'test2', 'christelle.jpg'
         );
 
         $users[] = new User(
             'Shirley',
             'pottier',
             '25', 'female', 'shirley@shirley.com',
-            0, 'shirley.jpg', 'test1'
+            0, 'test1', 'shirley.jpg'
         );
 
         foreach ($users as $user) {

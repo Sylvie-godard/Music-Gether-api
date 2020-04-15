@@ -65,8 +65,8 @@ class User
         string $genre,
         string $email,
         bool $admin,
-        ?string $photoUrl = null,
-        ?string $password = null
+        ?string $password = null,
+        ?string $photoUrl = null
     ) {
         $this->name = $name;
         $this->lastName = $lastName;
