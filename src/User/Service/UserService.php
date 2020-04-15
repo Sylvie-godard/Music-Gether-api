@@ -6,10 +6,12 @@ namespace App\User\Service;
 
 use App\User\Entity\User;
 use App\User\Repository\UserRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use User\Exception\UserNotFoundException;
 
 class UserService
 {
-    private $userRepository;
+    private UserRepository $userRepository;
 
     public function __construct(UserRepository $userRepository)
     {
@@ -20,9 +22,9 @@ class UserService
      * @param int $id
      * @return User
      *
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
-    public function getById(int $id)
+    public function getById(int $id): User
     {
         return $this->userRepository->findById($id);
     }
@@ -30,6 +32,17 @@ class UserService
     public function getAll(): array
     {
         return $this->userRepository->findAll();
+    }
+
+    /**
+     * @param string $email
+     * @return User
+     * @throws NonUniqueResultException
+     * @throws UserNotFoundException
+     */
+    public function getByEmail(string $email): User
+    {
+        return $this->userRepository->findByEmail($email);
     }
 
     public function update(User $user, array $fields): User
@@ -49,7 +62,7 @@ class UserService
                     $user->updateGenre($value);
                     break;
                 case 'age':
-                    $user->updateGenre($value);
+                    $user->updateAge($value);
                     break;
             }
         }

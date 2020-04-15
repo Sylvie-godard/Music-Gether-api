@@ -7,43 +7,48 @@ create_concert:
     path: /concerts
     # the controller value has the format 'controller_class::method_name'
     controller: App\Concert\Controller\CreateConcertController
-    methods:    POST
+    methods: POST
 
 get_concerts:
     path: /concerts
     controller: App\Concert\Controller\GetConcertsController
-    methods:    GET
+    methods: GET
 
 get_concert_by_id:
     path: /concerts/{id}
     controller: App\Concert\Controller\GetConcertByIdController
-    methods:    GET
+    methods: GET
 
 update_concert_by_id:
     path: /concerts/{id}
     controller: App\Concert\Controller\UpdateConcertByIdController
-    methods:    PUT
+    methods: PUT
 
 ## USER ##
 create_user:
     path: /users
     controller: App\User\Controller\CreateUserController
-    methods:    POST
+    methods: POST
 
 get_user_by_id:
     path: /users/{id}
     controller: App\User\Controller\GetUserByIdController
-    methods:    GET
+    methods: GET
+
+auth_user_login:
+    path: /users/auth/login
+    controller: App\User\Controller\AuthUserLoginController
+    methods: POST
 
 get_users:
     path: /users
     controller: App\User\Controller\GetUsersController
-    methods:    GET
+    methods: GET
 
 update_user_by_id:
     path: /users/{id}
     controller: App\User\Controller\UpdateUserByIdController
-    methods:    PUT
+    methods: PUT
 
 ## CONCERT PARTICIPANT ##
 get_concert_participants:
