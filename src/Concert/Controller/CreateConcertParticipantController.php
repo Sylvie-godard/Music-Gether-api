@@ -14,9 +14,9 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class CreateConcertParticipantController
 {
-    private $concertParticipantService;
+    private ConcertParticipantService $concertParticipantService;
 
-    private $validator;
+    private ValidatorInterface $validator;
 
     public function __construct(ConcertParticipantService $concertParticipantService, ValidatorInterface $validator)
     {
@@ -27,6 +27,7 @@ class CreateConcertParticipantController
     /**
      * @param Request $request
      * @return Response
+     * @throws InvalidDataException
      */
     public function __invoke(Request $request): Response
     {

@@ -7,7 +7,7 @@ namespace App\User\Repository;
 use App\User\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
-use User\Exception\UserNotFoundException;
+use App\Exception\UserNotFoundException;
 
 class UserRepository
 {

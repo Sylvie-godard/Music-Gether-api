@@ -65,3 +65,8 @@ get_concert_participants_by_concert_id:
     path: /concertParticipants/{id}
     controller: App\Concert\Controller\GetConcertParticipantByConcertId
     methods: GET
+
+## REFRESH TOKEN ##
+gesdinet_jwt_refresh_token:
+    path:       /api/token/refresh
+    controller: gesdinet.jwtrefreshtoken::refresh

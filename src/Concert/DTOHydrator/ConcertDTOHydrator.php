@@ -10,7 +10,7 @@ class ConcertDTOHydrator
 {
     private array $fields = ['id', 'artist', 'address', 'date', 'price', 'photo_url'];
 
-    public function extract(ConcertDTO $concertDTO)
+    public function extract(ConcertDTO $concertDTO): array
     {
         $result = [];
 
@@ -44,7 +44,7 @@ class ConcertDTOHydrator
      * @param ConcertDTO[]|array $concertsDTO
      * @return array
      */
-    public function extractCollection(array $concertsDTO)
+    public function extractCollection(array $concertsDTO): array
     {
         $results = [];
 

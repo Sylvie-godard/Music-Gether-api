@@ -16,9 +16,9 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class UpdateUserByIdController
 {
-    private $userService;
+    private UserService $userService;
 
-    private $validator;
+    private ValidatorInterface $validator;
 
     public function __construct(UserService $userService, ValidatorInterface $validator)
     {
@@ -28,9 +28,10 @@ class UpdateUserByIdController
 
     /**
      * @param Request $request
-     * @param int $id
+     * @param int     $id
      * @return JsonResponse
      * @throws NonUniqueResultException
+     * @throws InvalidDataException
      */
     public function __invoke(Request $request, int $id): JsonResponse
     {

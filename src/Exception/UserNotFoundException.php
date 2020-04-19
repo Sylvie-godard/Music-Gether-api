@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace User\Exception;
+namespace App\Exception;
 
 final class UserNotFoundException extends \Exception
 {

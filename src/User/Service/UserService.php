@@ -7,7 +7,7 @@ namespace App\User\Service;
 use App\User\Entity\User;
 use App\User\Repository\UserRepository;
 use Doctrine\ORM\NonUniqueResultException;
-use User\Exception\UserNotFoundException;
+use App\Exception\UserNotFoundException;
 
 class UserService
 {

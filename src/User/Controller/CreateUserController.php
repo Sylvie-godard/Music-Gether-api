@@ -6,7 +6,6 @@ namespace App\User\Controller;
 
 use App\Exception\InvalidDataException;
 use App\User\Entity\User;
-use App\User\Repository\UserRepository;
 use App\User\Service\UserService;
 use App\User\Validator\UserInput;
 use Symfony\Component\HttpFoundation\Request;

@@ -8,8 +8,8 @@ use App\User\Service\UserService;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use User\Exception\BadPasswordException;
-use User\Exception\UserNotFoundException;
+use App\Exception\BadPasswordException;
+use App\Exception\UserNotFoundException;
 
 class AuthUserLoginController
 {
