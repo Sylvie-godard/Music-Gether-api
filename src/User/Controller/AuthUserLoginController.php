@@ -29,13 +29,13 @@ class AuthUserLoginController
      */
     public function __invoke(Request $request): Response
     {
-        $email = $request->query->get('email', null);
-        $password = $request->query->get('password', null);
+        $response = $request->request->all();
 
-        if ($password !== null && $email !== null) {
-            $user = $this->userService->getByEmail($email);
 
-            if ($user->password() !== $password) {
+        if ($response['email'] !== null && $response['password'] !== null) {
+            $user = $this->userService->getByEmail($response['email']);
+
+            if ($user->password() !== $response['password']) {
                 throw BadPasswordException::fromPassword();
             }
 

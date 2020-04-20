@@ -14,11 +14,15 @@ migration:
 db-migrate:
 	docker-compose exec php bin/console doctrine:migrations:migrate
 
+db-update:
+	docker-compose exec php bin/console doctrine:schema:update --force
 
 ## VENDORS ##
 vendors:
 	docker-compose exec php php -n /usr/bin/composer install
 
+bin-console:
+	docker-compose exec php bin/console
 ## Docker ##
 docker-pull:
 	docker-compose -f docker-compose.yaml pull
@@ -41,7 +45,7 @@ docker-run-debug:
 docker-down:
 	docker-compose down
 
-docker-logs:
+logs:
 	docker-compose logs -f
 ps:
 	docker ps
@@ -63,10 +67,15 @@ clean-cache:
 service:
 	docker-compose exec php bin/console debug:autowiring
 
+## DEBUG
+
+debug-router:
+	docker-compose exec php bin/console debug:router
+
 
 ## Tests
 test-phpstan:
 	docker-compose exec php vendor/bin/phpstan analyse src/*
 
-load-fixture:
+fixture:
 	docker-compose exec php bin/console doctrine:fixtures:load

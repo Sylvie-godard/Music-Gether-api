@@ -3,11 +3,12 @@
 namespace App\User\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\User\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -58,6 +59,11 @@ class User
      */
     private ?string $password;
 
+    /**
+     * @ORM\Column(type="json")
+     */
+    private array $roles = [];
+
     public function __construct(
         string $name,
         string $lastName,
@@ -65,6 +71,7 @@ class User
         string $genre,
         string $email,
         bool $admin,
+        array $roles,
         ?string $password = null,
         ?string $photoUrl = null
     ) {
@@ -74,6 +81,7 @@ class User
         $this->genre = $genre;
         $this->email = $email;
         $this->admin = $admin;
+        $this->roles = ['ROLE_USER'];
         $this->photoUrl = $photoUrl;
         $this->password = $password;
     }
@@ -143,7 +151,7 @@ class User
         return $this;
     }
 
-    public function email(): string
+    public function getEmail(): string
     {
         return $this->email;
     }
@@ -160,8 +168,54 @@ class User
         return $this->photoUrl;
     }
 
-    public function password(): ?string
+    /**
+     * @inheritDoc
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+
+        $roles[] = 'ROLE_USER';
+
+        return \array_unique($roles);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getPassword()
     {
         return $this->password;
+    }
+
+    public function setPassword(string $password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getUsername()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
     }
 }

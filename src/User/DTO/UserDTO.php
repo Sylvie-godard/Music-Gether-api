@@ -29,7 +29,7 @@ class UserDTO
         $this->lastName = $user->lastName();
         $this->age = $user->age();
         $this->genre = $user->genre();
-        $this->email = $user->email();
+        $this->email = $user->getEmail();
         $this->photoUrl = $user->photoUrl();
     }
 

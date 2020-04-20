@@ -68,5 +68,8 @@ get_concert_participants_by_concert_id:
 
 ## REFRESH TOKEN ##
 gesdinet_jwt_refresh_token:
-    path:       /api/token/refresh
+    path: /token/refresh
     controller: gesdinet.jwtrefreshtoken::refresh
+
+login:
+    path: /login_check
