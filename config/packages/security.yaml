@@ -15,6 +15,8 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
+        main:
+            anonymous: lazy
         login:
             pattern: ^/login
             stateless: true
@@ -36,8 +38,6 @@ security:
             pattern:  ^/token/refresh
             stateless: true
             anonymous: true
-        main:
-            anonymous: true
 
 
 
@@ -48,6 +48,6 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/concerts, roles: IS_ANONYMOUS }
-        - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/concerts, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/token/refresh, roles: IS_AUTHENTICATED_ANONYMOUSLY }

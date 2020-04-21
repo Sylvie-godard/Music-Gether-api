@@ -25,10 +25,11 @@ class UserRepository implements ObjectRepository
      * @return User
      *
      * @throws NonUniqueResultException
+     * @throws UserNotFoundException
      */
     public function findById(int $id): User
     {
-        return $this->entityManager
+        $user =  $this->entityManager
             ->createQueryBuilder()
             ->select('u')
             ->from(User::class, 'u')
@@ -36,6 +37,12 @@ class UserRepository implements ObjectRepository
             ->setParameter('id', $id)
             ->getQuery()
             ->getOneOrNullResult();
+
+        if ($user === null) {
+            throw UserNotFoundException::fromId($id);
+        }
+
+        return $user;
     }
 
     /**
