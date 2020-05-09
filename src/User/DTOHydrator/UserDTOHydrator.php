@@ -8,7 +8,7 @@ use App\User\DTO\UserDTO;
 
 class UserDTOHydrator
 {
-    private $fields = [
+    private array $fields = [
         'id',
         'name',
         'lastName',

@@ -4,27 +4,41 @@ declare(strict_types=1);
 
 namespace App\Concert\DTO;
 
+use App\Concert\Entity\Concert;
 use App\Concert\Entity\ConcertParticipant;
+use App\User\DTO\UserDTO;
+use App\User\Entity\User;
 
 class ConcertParticipantDTO
 {
-    private $userId;
+    private int $id;
 
-    private $concertId;
+    private User $user;
+
+    private Concert $concert;
 
     public function __construct(ConcertParticipant $concertParticipant)
     {
-        $this->userId = $concertParticipant->userId();
-        $this->concertId = $concertParticipant->concertId();
+        $this->id = $concertParticipant->getId();
+        $this->user = $concertParticipant->user();
+        $this->concert = $concertParticipant->concert();
     }
 
-    public function getUserId(): int
+    /**
+     * @return int
+     */
+    public function getId(): int
     {
-        return $this->userId;
+        return $this->id;
     }
 
-    public function getConcertId(): int
+    public function getUser(): UserDTO
     {
-        return $this->concertId;
+        return new UserDTO($this->user);
+    }
+
+    public function getConcert(): ConcertDTO
+    {
+        return new ConcertDTO($this->concert);
     }
 }

@@ -20,7 +20,7 @@ class UserDTO
 
     private string $email;
 
-    private string $photoUrl;
+    private ?string $photoUrl;
 
     public function __construct(User $user)
     {

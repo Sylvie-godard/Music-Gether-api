@@ -32,6 +32,11 @@ class ConcertParticipantService
         return $this->concertParticipantRepository->findByConcert($concert);
     }
 
+    public function getById(int $id): ConcertParticipant
+    {
+        return $this->concertParticipantRepository->findById($id);
+    }
+
     public function getByUser(User $user): array
     {
         return $this->concertParticipantRepository->findByUser($user);

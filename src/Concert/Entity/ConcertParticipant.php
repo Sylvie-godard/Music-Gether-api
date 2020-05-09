@@ -52,7 +52,7 @@ class ConcertParticipant
     /**
      * @return User
      */
-    public function getUser(): User
+    public function user(): User
     {
         return $this->user;
     }
@@ -68,7 +68,7 @@ class ConcertParticipant
     /**
      * @return Concert
      */
-    public function getConcert(): Concert
+    public function concert(): Concert
     {
         return $this->concert;
     }

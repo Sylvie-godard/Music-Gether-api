@@ -5,22 +5,28 @@ declare(strict_types=1);
 namespace App\Concert\DTOHydrator;
 
 use App\Concert\DTO\ConcertParticipantDTO;
+use App\User\DTOHydrator\UserDTOHydrator;
 
 class ConcertParticipantDTOHydrator
 {
-    private $fields = ['user_id', 'concert_id'];
+    private array $fields = ['id', 'user', 'concert'];
 
     public function extract(ConcertParticipantDTO $concertDTO)
     {
         $result = [];
+        $userDTOHydrator = new UserDTOHydrator();
+        $concertDTOHydrator = new ConcertDTOHydrator();
 
         foreach ($this->fields as $field) {
             switch ($field) {
-                case 'user_id':
-                    $result['user_id'] = $concertDTO->getUserId();
+                case 'id':
+                    $result['id'] = $concertDTO->getId();
                     break;
-                case 'concert_id':
-                    $result['concert_id'] = $concertDTO->getConcertId();
+                case 'user':
+                    $result['user'] = $userDTOHydrator->extract($concertDTO->getUser());
+                    break;
+                case 'concert':
+                    $result['concert'] = $concertDTOHydrator->extract($concertDTO->getConcert());
                     break;
             }
         }

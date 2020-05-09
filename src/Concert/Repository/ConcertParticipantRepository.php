@@ -19,6 +19,18 @@ class ConcertParticipantRepository
         $this->entityManager = $entityManager;
     }
 
+    public function findById(int $id): ConcertParticipant
+    {
+        return $this->entityManager
+            ->createQueryBuilder()
+            ->select('cp')
+            ->from(ConcertParticipant::class, 'cp')
+            ->where('cp.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
     public function findByConcert(Concert $concert): array
     {
         return $this->entityManager
