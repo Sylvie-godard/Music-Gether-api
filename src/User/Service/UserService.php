@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\User\Service;
 
+use App\User\DTO\UserDTO;
 use App\User\Entity\User;
 use App\User\Repository\UserRepository;
 use Doctrine\ORM\NonUniqueResultException;
@@ -43,6 +44,20 @@ class UserService
     public function getByEmail(string $email): User
     {
         return $this->userRepository->findByEmail($email);
+    }
+
+    /**
+     * @param array|User[] $users
+     * @return array
+     */
+    public function getUsersDTOFromUsers(array $users): array
+    {
+        $usersDTO = [];
+        foreach ($users as $user) {
+            $usersDTO[] = new UserDTO($user);
+        }
+
+        return $usersDTO;
     }
 
     public function update(User $user, array $fields): User

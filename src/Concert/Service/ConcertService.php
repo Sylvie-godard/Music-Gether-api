@@ -77,4 +77,9 @@ class ConcertService
     {
         $this->concertRepository->save($concert);
     }
+
+    public function getUsersFromConcertParticipants(array $concertParticipants): array
+    {
+        return \array_map(fn($n) => $n->user(), $concertParticipants);
+    }
 }

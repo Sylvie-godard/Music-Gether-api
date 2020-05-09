@@ -26,12 +26,12 @@ class ConcertParticipant
     private int $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="concertParticipant")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="concertParticipants")
      */
     private User $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Concert::class, inversedBy="participations")
+     * @ORM\ManyToOne(targetEntity=Concert::class, inversedBy="concertParticipants")
      */
     private Concert $concert;
 

@@ -5,14 +5,16 @@ declare(strict_types=1);
 namespace App\Concert\DTOHydrator;
 
 use App\Concert\DTO\ConcertDTO;
+use App\User\DTOHydrator\UserDTOHydrator;
 
 class ConcertDTOHydrator
 {
-    private array $fields = ['id', 'artist', 'address', 'date', 'price', 'photo_url'];
+    private array $fields = ['id', 'artist', 'address', 'date', 'price', 'photo_url', 'participants'];
 
     public function extract(ConcertDTO $concertDTO): array
     {
         $result = [];
+        $userDTOHydrator = new UserDTOHydrator();
 
         foreach ($this->fields as $field) {
             switch ($field) {
@@ -33,6 +35,9 @@ class ConcertDTOHydrator
                     break;
                 case 'photo_url':
                     $result['photo_url'] = $concertDTO->getPhotoUrl();
+                    break;
+                case 'participants':
+                    $result['participants'] = $userDTOHydrator->extractCollection($concertDTO->getParticipants());
                     break;
             }
         }

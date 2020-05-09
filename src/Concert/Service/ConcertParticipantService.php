@@ -37,11 +37,6 @@ class ConcertParticipantService
         return $this->concertParticipantRepository->findById($id);
     }
 
-    public function getByUser(User $user): array
-    {
-        return $this->concertParticipantRepository->findByUser($user);
-    }
-
     public function getConcertParticipantsDTOFromConcertParticipants(array $concertParticipants): array
     {
         $concertParticipantsDTO = [];

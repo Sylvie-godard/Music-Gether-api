@@ -125,8 +125,11 @@ class Concert
         return $this->photoUrl;
     }
 
-    public function updatePhotoUrl(string $photoUrl): void
+    /**
+     * @return ArrayCollection|Collection
+     */
+    public function concertParticipants()
     {
-        $this->photoUrl = $photoUrl;
+        return $this->concertParticipants;
     }
 }

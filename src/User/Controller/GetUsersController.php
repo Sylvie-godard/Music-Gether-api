@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class GetUsersController
 {
-    private $userService;
+    private UserService $userService;
 
     public function __construct(UserService $userService)
     {
@@ -21,11 +21,7 @@ class GetUsersController
     public function __invoke(): JsonResponse
     {
         $users = $this->userService->getAll();
-        $usersDTO = [];
-        foreach ($users as $user) {
-            $usersDTO[] = new UserDTO($user);
-        }
-
+        $usersDTO = $this->userService->getUsersDTOFromUsers($users);
         $data = new UserDTOHydrator();
         $data = $data->extractCollection($usersDTO);
 

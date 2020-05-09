@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Concert\DTO;
 
 use App\Concert\Entity\Concert;
+use App\User\DTO\UserDTO;
 
 class ConcertDTO
 {
@@ -20,6 +21,8 @@ class ConcertDTO
 
     private string $photoUrl;
 
+    private array $participants;
+
     public function __construct(Concert $concert)
     {
         $this->id = $concert->id();
@@ -28,6 +31,7 @@ class ConcertDTO
         $this->address = $concert->address();
         $this->price = $concert->price();
         $this->photoUrl = $concert->photoUrl();
+        $this->participants = [];
     }
 
     public function getId(): int
@@ -58,5 +62,24 @@ class ConcertDTO
     public function getPhotoUrl(): string
     {
         return $this->photoUrl;
+    }
+
+    /**
+     * @return array|UserDTO[]
+     */
+    public function getParticipants(): array
+    {
+        return $this->participants;
+    }
+
+    /**
+     * @param array|UserDTO[] $participants
+     * @return $this
+     */
+    public function setParticipants(array $participants): self
+    {
+        $this->participants = $participants;
+
+        return $this;
     }
 }
