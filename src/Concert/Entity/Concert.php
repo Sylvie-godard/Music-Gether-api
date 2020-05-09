@@ -7,6 +7,7 @@ namespace App\Concert\Entity;
 use Cake\Chronos\Chronos;
 use Cake\Chronos\ChronosInterface;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -49,7 +50,7 @@ class Concert
     /**
      * @ORM\OneToMany(targetEntity=ConcertParticipant::class, mappedBy="concert")
      */
-    private ArrayCollection $concertParticipants;
+    private Collection $concertParticipants;
 
     public function __construct(
         string $artist,

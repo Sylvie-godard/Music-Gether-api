@@ -5,21 +5,36 @@ declare(strict_types=1);
 namespace App\Concert\Service;
 
 use App\Concert\DTO\ConcertParticipantDTO;
+use App\Concert\Entity\Concert;
 use App\Concert\Entity\ConcertParticipant;
 use App\Concert\Repository\ConcertParticipantRepository;
+use App\User\Entity\User;
 
 class ConcertParticipantService
 {
-    private $concertParticipantRepository;
+    private ConcertParticipantRepository $concertParticipantRepository;
 
     public function __construct(ConcertParticipantRepository $concertParticipantRepository)
     {
         $this->concertParticipantRepository = $concertParticipantRepository;
     }
 
-    public function getByConcertId(int $concertId): array
+    public function create(Concert $concert, User $user): ConcertParticipant
     {
-        return $this->concertParticipantRepository->findByConcertId($concertId);
+        $concertParticipant = new ConcertParticipant($concert, $user);
+        $this->save($concertParticipant);
+
+        return $concertParticipant;
+    }
+
+    public function getByConcert(Concert $concert): array
+    {
+        return $this->concertParticipantRepository->findByConcert($concert);
+    }
+
+    public function getByUser(User $user): array
+    {
+        return $this->concertParticipantRepository->findByUser($user);
     }
 
     public function getConcertParticipantsDTOFromConcertParticipants(array $concertParticipants): array

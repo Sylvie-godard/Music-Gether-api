@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class GetConcertParticipantByConcertId
 {
-    private $concertParticipantService;
+    private ConcertParticipantService $concertParticipantService;
 
     public function __construct(ConcertParticipantService $concertParticipantService)
     {
