@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Concert\Repository;
 
 use App\Concert\Entity\Concert;
+use App\Exception\ConcertNotFoundException;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 
@@ -24,7 +25,8 @@ class ConcertRepository
      */
     public function findById(int $id): Concert
     {
-        return $this->entityManager
+
+        $concert = $this->entityManager
             ->createQueryBuilder()
             ->select('c')
             ->from(Concert::class, 'c')
@@ -32,6 +34,12 @@ class ConcertRepository
             ->setParameter('id', $id)
             ->getQuery()
             ->getOneOrNullResult();
+
+        if ($concert === null) {
+            throw ConcertNotFoundException::fromId($id);
+        }
+
+        return $concert;
     }
 
     public function findAll(): array

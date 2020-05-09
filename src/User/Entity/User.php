@@ -2,6 +2,8 @@
 
 namespace App\User\Entity;
 
+use App\Concert\Entity\ConcertParticipant;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -64,6 +66,11 @@ class User implements UserInterface
      */
     private array $roles = [];
 
+    /**
+     * @ORM\OneToMany(targetEntity=ConcertParticipant::class, mappedBy="user")
+     */
+    private ArrayCollection $concertParticipants;
+
     public function __construct(
         string $name,
         string $lastName,
@@ -71,7 +78,6 @@ class User implements UserInterface
         string $genre,
         string $email,
         bool $admin,
-        array $roles,
         ?string $password = null,
         ?string $photoUrl = null
     ) {
@@ -84,6 +90,7 @@ class User implements UserInterface
         $this->roles = ['ROLE_USER'];
         $this->photoUrl = $photoUrl;
         $this->password = $password;
+        $this->concertParticipants = new ArrayCollection();
     }
 
     public function id(): int

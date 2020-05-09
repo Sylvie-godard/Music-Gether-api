@@ -45,7 +45,6 @@ class CreateUserController
             $userInput->genre(),
             $userInput->email(),
             false,
-
         );
 
         $this->userService->save($user);
