@@ -31,7 +31,6 @@ class AuthUserLoginController
     {
         $response = $request->request->all();
 
-
         if ($response['email'] !== null && $response['password'] !== null) {
             $user = $this->userService->getByEmail($response['email']);
 

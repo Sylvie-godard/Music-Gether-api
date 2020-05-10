@@ -15,8 +15,6 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        main:
-            anonymous: lazy
         login:
             pattern: ^/login
             stateless: true
@@ -30,9 +28,14 @@ security:
         api:
             pattern: ^/
             stateless: true
+            anonymous: true
+            provider: app_user_provider
             guard:
                 authenticators:
                     - lexik_jwt_authentication.jwt_token_authenticator
+
+        main:
+            anonymous: lazy
 
         refresh:
             pattern:  ^/token/refresh
@@ -48,6 +51,6 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/concerts, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/concerts$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/token/refresh, roles: IS_AUTHENTICATED_ANONYMOUSLY }

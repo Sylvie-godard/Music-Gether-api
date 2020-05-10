@@ -23,7 +23,7 @@ class UserFixtures extends Fixture
             'Sylvie',
             'Godard',
             '25', 'female', 'sylvie@sylvie.com',
-            1,  ['ROLE_USER'], null, 'sylvie.jpg'
+            1,  null, 'sylvie.jpg'
         );
         $user1->setPassword($this->encodePassword($user1, 'test'));
         $users[] = $user1;
@@ -32,7 +32,7 @@ class UserFixtures extends Fixture
             'Xavier',
             'Godard',
             '26', 'female', 'xavier@xavier.com',
-            0, ['ROLE_USER'], null, 'xavier.jpg'
+            0,null, 'xavier.jpg'
         );
         $user2->setPassword($this->encodePassword($user2, 'test2'));
         $users[] = $user2;
@@ -41,7 +41,7 @@ class UserFixtures extends Fixture
             'Christelle',
             'Yamga',
             '25', 'female', 'chri@chri.com',
-            0, ['ROLE_USER'], null, 'christelle.jpg'
+            0, null, 'christelle.jpg'
         );
         $user3->setPassword($this->encodePassword($user3, 'test3'));
         $users[] = $user3;
@@ -50,7 +50,7 @@ class UserFixtures extends Fixture
             'Shirley',
             'pottier',
             '25', 'female', 'shirley@shirley.com',
-            0, ['ROLE_USER'], null, 'shirley.jpg'
+            0, null, 'shirley.jpg'
         );
         $user4->setPassword($this->encodePassword($user4, 'test4'));
         $users[] = $user4;
