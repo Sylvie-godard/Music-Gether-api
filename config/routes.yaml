@@ -30,15 +30,15 @@ create_user:
     controller: App\User\Controller\CreateUserController
     methods: POST
 
+get_my_profile:
+    path: /users/me
+    controller: App\User\Controller\GetMyProfileController
+    methods: GET
+
 get_user_by_id:
     path: /users/{id}
     controller: App\User\Controller\GetUserByIdController
     methods: GET
-
-auth_user_login:
-    path: /users/auth/login
-    controller: App\User\Controller\AuthUserLoginController
-    methods: POST
 
 get_users:
     path: /users

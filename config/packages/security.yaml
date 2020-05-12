@@ -51,6 +51,6 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/concerts$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/concerts$, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/token/refresh, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/users/me$, roles: IS_AUTHENTICATED_FULLY }

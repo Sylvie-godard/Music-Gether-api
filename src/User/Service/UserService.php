@@ -9,14 +9,32 @@ use App\User\Entity\User;
 use App\User\Repository\UserRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use App\Exception\UserNotFoundException;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class UserService
 {
     private UserRepository $userRepository;
 
-    public function __construct(UserRepository $userRepository)
+    private TokenStorageInterface $tokenStorage;
+
+    public function __construct(UserRepository $userRepository, TokenStorageInterface $tokenStorage)
     {
         $this->userRepository = $userRepository;
+        $this->tokenStorage = $tokenStorage;
+    }
+
+    public function getCurrentUser()
+    {
+        $token = $this->tokenStorage->getToken();
+        if ($token instanceof TokenInterface) {
+            /** @var User $user */
+            $user = $token->getUser();
+
+            return $user;
+        }
+
+        return null;
     }
 
     /**

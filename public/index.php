@@ -1,8 +1,4 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE, PUT");
-header("Access-Control-Allow-Headers: append,delete,entries,foreach,get,has,keys,set,values,Authorization");
-
 use App\Kernel;
 use Symfony\Component\ErrorHandler\Debug;
 use Symfony\Component\HttpFoundation\Request;

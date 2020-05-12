@@ -12,7 +12,7 @@ use Doctrine\ORM\NonUniqueResultException;
 
 class ConcertService
 {
-    private $concertRepository;
+    private ConcertRepository $concertRepository;
 
     public function __construct(ConcertRepository $concertRepository)
     {
@@ -68,9 +68,9 @@ class ConcertService
         return $this->concertRepository->findById($id);
     }
 
-    public function getAll(): array
+    public function getAll(?string $query = null): array
     {
-        return $this->concertRepository->findAll();
+        return $this->concertRepository->findAll($query);
     }
 
     public function save(Concert $concert): void

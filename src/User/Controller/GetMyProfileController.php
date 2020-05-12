@@ -6,13 +6,10 @@ namespace App\User\Controller;
 
 use App\User\DTO\UserDTO;
 use App\User\DTOHydrator\UserDTOHydrator;
-use App\User\Entity\User;
 use App\User\Service\UserService;
-use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 
-class GetUserByIdController
+class GetMyProfileController
 {
     private UserService $userService;
 
@@ -22,17 +19,11 @@ class GetUserByIdController
     }
 
     /**
-     * @param Request $request
-     * @param int $id
      * @return JsonResponse
-     * @throws NonUniqueResultException
      */
-    public function __invoke(Request $request, int $id): JsonResponse
+    public function __invoke(): JsonResponse
     {
-        $user = $this->userService->getById($id);
-
-        /** @var User $test */
-        $test = $request->getUser();
+        $user = $this->userService->getCurrentUser();
 
         $data = new UserDTOHydrator();
 

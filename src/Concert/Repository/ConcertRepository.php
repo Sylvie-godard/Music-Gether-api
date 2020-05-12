@@ -11,7 +11,7 @@ use Doctrine\ORM\NonUniqueResultException;
 
 class ConcertRepository
 {
-    private $entityManager;
+    private EntityManagerInterface $entityManager;
 
     public function __construct(EntityManagerInterface $entityManager)
     {
@@ -42,14 +42,18 @@ class ConcertRepository
         return $concert;
     }
 
-    public function findAll(): array
+    public function findAll(?string $query = null): array
     {
-        return $this->entityManager
+        $qb = $this->entityManager
             ->createQueryBuilder()
             ->select('c')
-            ->from(Concert::class, 'c')
-            ->getQuery()
-            ->getResult();
+            ->from(Concert::class, 'c');
+        if ($query) {
+            $qb->where('c.artist LIKE :artist')
+                ->setParameter('artist', '%' . $query . '%');
+        }
+
+        return $qb->getQuery()->getResult();
     }
 
     public function save(Concert $concert): void
