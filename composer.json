@@ -25,8 +25,8 @@
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.3",
-        "phpspec/phpspec": "^6.1",
-        "phpstan/phpstan": "^0.12.17"
+        "phpstan/phpstan": "^0.12.17",
+        "phpunit/phpunit": "^9.1"
     },
     "config": {
         "preferred-install": {
@@ -36,6 +36,7 @@
     },
     "autoload": {
         "psr-4": {
+            "tests\\": "tests/",
             "App\\": "src/"
         }
     },

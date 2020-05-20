@@ -23,6 +23,7 @@ vendors:
 
 bin-console:
 	docker-compose exec php bin/console
+
 ## Docker ##
 docker-pull:
 	docker-compose -f docker-compose.yaml pull
@@ -79,3 +80,6 @@ test-phpstan:
 
 fixture:
 	docker-compose exec php bin/console doctrine:fixtures:load
+
+test:
+	docker-compose exec php vendor/bin/phpunit tests/*
