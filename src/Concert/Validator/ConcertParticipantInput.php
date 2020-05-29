@@ -14,14 +14,14 @@ class ConcertParticipantInput
      *
      * @var int|null
      */
-    private $userId;
+    private ?int $userId;
 
     /**
      * @Assert\NotBlank
      *
      * @var int|null
      */
-    private $concertId;
+    private ?int $concertId;
 
     public function __construct(?int $userId = null, ?int $concertId = null)
     {
