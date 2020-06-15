@@ -44,3 +44,6 @@
 
 ## Configuration Debugger PhpStorm
 https://blog.eleven-labs.com/fr/debug-run-phpunit-tests-using-docker-remote-interpreters-with-phpstorm/
+
+## Lancer le projet sur un server à partir de docker
+-       docker-compose exec php php -S 127.0.0.1:8080 -ddisplay_errors=0 -t public public/index.php
